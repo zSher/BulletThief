@@ -27,6 +27,8 @@
 		D5404A5D1AEFE68B00F46270 /* rightArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D5404A531AEFE68B00F46270 /* rightArrow.png */; };
 		D5404A5E1AEFE68B00F46270 /* shootBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D5404A541AEFE68B00F46270 /* shootBtn.png */; };
 		D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5404A551AEFE68B00F46270 /* Utilities.swift */; };
+		D5814CCD1AF6CA7900749B49 /* TapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5814CCC1AF6CA7900749B49 /* TapController.swift */; };
+		D5F774761AF69F3700EA2480 /* BattleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5F774751AF69F3700EA2480 /* BattleScene.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +47,11 @@
 		D532F34F1AF25C450091661E /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
 		D5404A231AEFE61800F46270 /* BulletThief.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulletThief.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5404A271AEFE61800F46270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5404A281AEFE61800F46270 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BulletThief/AppDelegate.swift; sourceTree = "<group>"; };
+		D5404A281AEFE61800F46270 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D5404A2C1AEFE61800F46270 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D5404A2E1AEFE61800F46270 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D5404A311AEFE61800F46270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D5404A331AEFE61800F46270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BulletThief/Images.xcassets; sourceTree = "<group>"; };
+		D5404A331AEFE61800F46270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D5404A361AEFE61800F46270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D5404A3C1AEFE61800F46270 /* BulletThiefTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BulletThiefTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5404A411AEFE61800F46270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +66,8 @@
 		D5404A531AEFE68B00F46270 /* rightArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rightArrow.png; sourceTree = "<group>"; };
 		D5404A541AEFE68B00F46270 /* shootBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shootBtn.png; sourceTree = "<group>"; };
 		D5404A551AEFE68B00F46270 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		D5814CCC1AF6CA7900749B49 /* TapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapController.swift; sourceTree = "<group>"; };
+		D5F774751AF69F3700EA2480 /* BattleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BattleScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +94,7 @@
 				D5404A2C1AEFE61800F46270 /* GameScene.swift */,
 				D532F3471AF13FEA0091661E /* TitleScene.swift */,
 				D532F34F1AF25C450091661E /* ShopScene.swift */,
+				D5F774751AF69F3700EA2480 /* BattleScene.sks */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -106,10 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				D5404A251AEFE61800F46270 /* BulletThief */,
-				D5404A281AEFE61800F46270 /* AppDelegate.swift */,
-				D5404A301AEFE61800F46270 /* Main.storyboard */,
-				D5404A331AEFE61800F46270 /* Images.xcassets */,
-				D5404A351AEFE61800F46270 /* LaunchScreen.xib */,
 				D5404A3F1AEFE61800F46270 /* BulletThiefTests */,
 				D5404A241AEFE61800F46270 /* Products */,
 			);
@@ -128,7 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				D5404A4D1AEFE68B00F46270 /* Gun.swift */,
-				D5404A4E1AEFE68B00F46270 /* HudController.swift */,
+				D5814CCE1AF6D62100749B49 /* Control Schemes */,
 				D5404A511AEFE68B00F46270 /* Player.swift */,
 				D5404A521AEFE68B00F46270 /* PlayerData.swift */,
 				D5404A551AEFE68B00F46270 /* Utilities.swift */,
@@ -137,6 +138,10 @@
 				D532F34D1AF25BEB0091661E /* Scenes */,
 				D5404A601AEFE69400F46270 /* Images */,
 				D5404A261AEFE61800F46270 /* Supporting Files */,
+				D5404A281AEFE61800F46270 /* AppDelegate.swift */,
+				D5404A301AEFE61800F46270 /* Main.storyboard */,
+				D5404A331AEFE61800F46270 /* Images.xcassets */,
+				D5404A351AEFE61800F46270 /* LaunchScreen.xib */,
 			);
 			path = BulletThief;
 			sourceTree = "<group>";
@@ -176,6 +181,15 @@
 				D5404A541AEFE68B00F46270 /* shootBtn.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		D5814CCE1AF6D62100749B49 /* Control Schemes */ = {
+			isa = PBXGroup;
+			children = (
+				D5404A4E1AEFE68B00F46270 /* HudController.swift */,
+				D5814CCC1AF6CA7900749B49 /* TapController.swift */,
+			);
+			name = "Control Schemes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,6 +274,7 @@
 			files = (
 				D5404A371AEFE61800F46270 /* LaunchScreen.xib in Resources */,
 				D5404A5A1AEFE68B00F46270 /* player.png in Resources */,
+				D5F774761AF69F3700EA2480 /* BattleScene.sks in Resources */,
 				D5404A341AEFE61800F46270 /* Images.xcassets in Resources */,
 				D5404A591AEFE68B00F46270 /* leftArrow.png in Resources */,
 				D5404A5D1AEFE68B00F46270 /* rightArrow.png in Resources */,
@@ -286,6 +301,7 @@
 				D5404A2D1AEFE61800F46270 /* GameScene.swift in Sources */,
 				D532F3501AF25C450091661E /* ShopScene.swift in Sources */,
 				D5404A581AEFE68B00F46270 /* HudController.swift in Sources */,
+				D5814CCD1AF6CA7900749B49 /* TapController.swift in Sources */,
 				D5404A5C1AEFE68B00F46270 /* PlayerData.swift in Sources */,
 				D5404A2F1AEFE61800F46270 /* GameViewController.swift in Sources */,
 				D5404A291AEFE61800F46270 /* AppDelegate.swift in Sources */,
@@ -322,7 +338,6 @@
 				D5404A311AEFE61800F46270 /* Base */,
 			);
 			name = Main.storyboard;
-			path = BulletThief;
 			sourceTree = "<group>";
 		};
 		D5404A351AEFE61800F46270 /* LaunchScreen.xib */ = {
@@ -331,7 +346,6 @@
 				D5404A361AEFE61800F46270 /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = BulletThief;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

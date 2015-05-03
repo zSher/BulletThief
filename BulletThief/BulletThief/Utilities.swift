@@ -37,3 +37,6 @@ enum Directions: Int {
     case Left = 0
     case Right
 }
+
+var documentDirectories = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
+var documentDirectory = documentDirectories[0] as String

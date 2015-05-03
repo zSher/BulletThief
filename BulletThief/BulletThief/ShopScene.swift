@@ -41,7 +41,7 @@ class ShopScene: SKScene {
         var rect = CGRectMake(0, 0, 100, 50)
         var corners = CGFloat(5.0)
         var path = CGPathCreateWithRoundedRect(rect, corners, corners, nil)
-        battleButton = SKShapeNode(path: path, centered: true)
+        battleButton = SKShapeNode(path: path, centered: true) //if you don't use centered, the origin of SKShape is different then the path
         battleButton.position.x = self.size.width - rect.width - 10
         battleButton.position.y = 0
         battleButton.fillColor = UIColor.redColor()
