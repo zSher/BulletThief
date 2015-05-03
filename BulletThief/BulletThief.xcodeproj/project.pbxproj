@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D532F3481AF13FEA0091661E /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532F3471AF13FEA0091661E /* TitleScene.swift */; };
+		D532F34C1AF146890091661E /* titleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D532F34B1AF146890091661E /* titleImage.png */; };
+		D532F3501AF25C450091661E /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532F34F1AF25C450091661E /* ShopScene.swift */; };
 		D5404A291AEFE61800F46270 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5404A281AEFE61800F46270 /* AppDelegate.swift */; };
 		D5404A2D1AEFE61800F46270 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5404A2C1AEFE61800F46270 /* GameScene.swift */; };
 		D5404A2F1AEFE61800F46270 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5404A2E1AEFE61800F46270 /* GameViewController.swift */; };
@@ -37,13 +40,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D532F3471AF13FEA0091661E /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
+		D532F34B1AF146890091661E /* titleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImage.png; sourceTree = "<group>"; };
+		D532F34F1AF25C450091661E /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
 		D5404A231AEFE61800F46270 /* BulletThief.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BulletThief.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5404A271AEFE61800F46270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D5404A281AEFE61800F46270 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D5404A281AEFE61800F46270 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = BulletThief/AppDelegate.swift; sourceTree = "<group>"; };
 		D5404A2C1AEFE61800F46270 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		D5404A2E1AEFE61800F46270 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		D5404A311AEFE61800F46270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D5404A331AEFE61800F46270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D5404A331AEFE61800F46270 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BulletThief/Images.xcassets; sourceTree = "<group>"; };
 		D5404A361AEFE61800F46270 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D5404A3C1AEFE61800F46270 /* BulletThiefTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BulletThiefTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5404A411AEFE61800F46270 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,10 +84,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D532F34D1AF25BEB0091661E /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				D5404A2C1AEFE61800F46270 /* GameScene.swift */,
+				D532F3471AF13FEA0091661E /* TitleScene.swift */,
+				D532F34F1AF25C450091661E /* ShopScene.swift */,
+			);
+			name = Scenes;
+			sourceTree = "<group>";
+		};
+		D532F34E1AF25C170091661E /* Bullets */ = {
+			isa = PBXGroup;
+			children = (
+				D5404A4C1AEFE68B00F46270 /* Bullet.swift */,
+			);
+			name = Bullets;
+			sourceTree = "<group>";
+		};
 		D5404A1A1AEFE61800F46270 = {
 			isa = PBXGroup;
 			children = (
 				D5404A251AEFE61800F46270 /* BulletThief */,
+				D5404A281AEFE61800F46270 /* AppDelegate.swift */,
+				D5404A301AEFE61800F46270 /* Main.storyboard */,
+				D5404A331AEFE61800F46270 /* Images.xcassets */,
+				D5404A351AEFE61800F46270 /* LaunchScreen.xib */,
 				D5404A3F1AEFE61800F46270 /* BulletThiefTests */,
 				D5404A241AEFE61800F46270 /* Products */,
 			);
@@ -99,19 +127,15 @@
 		D5404A251AEFE61800F46270 /* BulletThief */ = {
 			isa = PBXGroup;
 			children = (
-				D5404A4C1AEFE68B00F46270 /* Bullet.swift */,
 				D5404A4D1AEFE68B00F46270 /* Gun.swift */,
 				D5404A4E1AEFE68B00F46270 /* HudController.swift */,
-				D5404A601AEFE69400F46270 /* Images */,
 				D5404A511AEFE68B00F46270 /* Player.swift */,
 				D5404A521AEFE68B00F46270 /* PlayerData.swift */,
 				D5404A551AEFE68B00F46270 /* Utilities.swift */,
-				D5404A281AEFE61800F46270 /* AppDelegate.swift */,
-				D5404A2C1AEFE61800F46270 /* GameScene.swift */,
 				D5404A2E1AEFE61800F46270 /* GameViewController.swift */,
-				D5404A301AEFE61800F46270 /* Main.storyboard */,
-				D5404A331AEFE61800F46270 /* Images.xcassets */,
-				D5404A351AEFE61800F46270 /* LaunchScreen.xib */,
+				D532F34E1AF25C170091661E /* Bullets */,
+				D532F34D1AF25BEB0091661E /* Scenes */,
+				D5404A601AEFE69400F46270 /* Images */,
 				D5404A261AEFE61800F46270 /* Supporting Files */,
 			);
 			path = BulletThief;
@@ -145,6 +169,7 @@
 		D5404A601AEFE69400F46270 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D532F34B1AF146890091661E /* titleImage.png */,
 				D5404A4F1AEFE68B00F46270 /* leftArrow.png */,
 				D5404A501AEFE68B00F46270 /* player.png */,
 				D5404A531AEFE68B00F46270 /* rightArrow.png */,
@@ -239,6 +264,7 @@
 				D5404A591AEFE68B00F46270 /* leftArrow.png in Resources */,
 				D5404A5D1AEFE68B00F46270 /* rightArrow.png in Resources */,
 				D5404A321AEFE61800F46270 /* Main.storyboard in Resources */,
+				D532F34C1AF146890091661E /* titleImage.png in Resources */,
 				D5404A5E1AEFE68B00F46270 /* shootBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,6 +284,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5404A2D1AEFE61800F46270 /* GameScene.swift in Sources */,
+				D532F3501AF25C450091661E /* ShopScene.swift in Sources */,
 				D5404A581AEFE68B00F46270 /* HudController.swift in Sources */,
 				D5404A5C1AEFE68B00F46270 /* PlayerData.swift in Sources */,
 				D5404A2F1AEFE61800F46270 /* GameViewController.swift in Sources */,
@@ -266,6 +293,7 @@
 				D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */,
 				D5404A571AEFE68B00F46270 /* Gun.swift in Sources */,
 				D5404A561AEFE68B00F46270 /* Bullet.swift in Sources */,
+				D532F3481AF13FEA0091661E /* TitleScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -294,6 +322,7 @@
 				D5404A311AEFE61800F46270 /* Base */,
 			);
 			name = Main.storyboard;
+			path = BulletThief;
 			sourceTree = "<group>";
 		};
 		D5404A351AEFE61800F46270 /* LaunchScreen.xib */ = {
@@ -302,6 +331,7 @@
 				D5404A361AEFE61800F46270 /* Base */,
 			);
 			name = LaunchScreen.xib;
+			path = BulletThief;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -389,7 +419,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BulletThief/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -400,7 +430,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BulletThief/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
