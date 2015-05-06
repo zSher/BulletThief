@@ -22,18 +22,26 @@ class TapController: NSObject {
     var isSideTapped = false
     var side = 0
     
+    //Ref to "newest" touch
+    //This prevents movement from stopping if 2 fingers are tapped
+    var focusedTouch:UITouch?
+    
     init(size:CGSize) {
         sizeOfScreen = size
         middleLine = size.width / 2
     }
     
-    func touchBegan(location: CGPoint) {
+    
+    func touchBegan(location: CGPoint, touch:UITouch) {
         isSideTapped = true
         side = location.x < middleLine ? 0 : 1
+        focusedTouch = touch //set the touch we are currently watching
     }
     
-    func touchesEnded(location: CGPoint) {
-        isSideTapped = false
+    func touchesEnded(location: CGPoint, touch:UITouch) {
+        if touch == focusedTouch {
+            isSideTapped = false //only stop if the touch was lifted
+        }
     }
     
     func update(deltaTime: CFTimeInterval) {

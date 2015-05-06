@@ -24,14 +24,18 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
         addChild(player)
         playerSpawn.removeFromParent()
         
-//        hudController = HudController(screenSize: self.size)
-//        hudController.delegate = self
-//        hudController.position.y = hudController.leftArrow.size.height/2 + 10
-//        addChild(hudController)
-        
-        tapController = TapController(size: self.size)
-        tapController?.delegate = self
-        
+        var test = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(25, 25))
+        test.position = CGPointMake(self.size.width/2, self.size.height/2)
+        addChild(test)
+        if playerData.controlScheme != ControlSchemes.Tap {
+            hudController = HudController(screenSize: self.size)
+            hudController!.delegate = self
+            hudController!.position.y = hudController!.leftArrow.size.height/2 + 10
+            addChild(hudController!)
+        } else {
+            tapController = TapController(size: self.size)
+            tapController?.delegate = self
+        }
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -40,20 +44,23 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
         for touch: AnyObject in touches {
             let touchLocation = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(touchLocation)
-            
+
             if touchedNode == self {
-                tapController?.touchBegan(touchLocation)
+                tapController?.touchBegan(touchLocation, touch: touch as UITouch)
             }
         }
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
         
+        
         for touch: AnyObject in touches {
+            var to = touch as UITouch
+            
             let touchLocation = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(touchLocation)
             
-            tapController?.touchesEnded(touchLocation)
+            tapController?.touchesEnded(touchLocation, touch: touch as UITouch)
         }
     }
     
@@ -70,8 +77,9 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
     func shootBtn(hudController: HudController, deltaTime: CFTimeInterval) {
         self.player.shoot(deltaTime)
     }
-   
+    
     var timeSinceLastUpdate: CFTimeInterval = 0
+//    var testTime:Double = 0
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         var deltaTime = currentTime - timeSinceLastUpdate
@@ -81,8 +89,20 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
             deltaTime = 1 / 60.0
         }
         
-//        hudController.update(deltaTime)
-        tapController?.update(deltaTime)
+//        testTime += deltaTime
+//        println(testTime)
+        updateControls(deltaTime)
+        player.update(deltaTime)
+        
+    }
+
+    //ugly but oh well.
+    func updateControls(deltaTime:CFTimeInterval){
+        if playerData.controlScheme != ControlSchemes.Tap {
+            hudController?.update(deltaTime)
+        } else {
+            tapController?.update(deltaTime)
+        }
     }
 }
 

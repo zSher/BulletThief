@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D529F9041AF9A3170093D762 /* StandardSpawnBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529F9031AF9A3170093D762 /* StandardSpawnBulletEffect.swift */; };
 		D532F3481AF13FEA0091661E /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532F3471AF13FEA0091661E /* TitleScene.swift */; };
 		D532F34C1AF146890091661E /* titleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D532F34B1AF146890091661E /* titleImage.png */; };
 		D532F3501AF25C450091661E /* ShopScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532F34F1AF25C450091661E /* ShopScene.swift */; };
@@ -28,6 +29,14 @@
 		D5404A5E1AEFE68B00F46270 /* shootBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = D5404A541AEFE68B00F46270 /* shootBtn.png */; };
 		D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5404A551AEFE68B00F46270 /* Utilities.swift */; };
 		D5814CCD1AF6CA7900749B49 /* TapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5814CCC1AF6CA7900749B49 /* TapController.swift */; };
+		D5814CD01AF70CF800749B49 /* BulletEffectProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5814CCF1AF70CF800749B49 /* BulletEffectProtocol.swift */; };
+		D5814CD21AF70F6F00749B49 /* SplitBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5814CD11AF70F6F00749B49 /* SplitBulletEffect.swift */; };
+		D58D080C1AF8551A00E31640 /* LinePathBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58D080B1AF8551A00E31640 /* LinePathBulletEffect.swift */; };
+		D5C79BC71AF71E07004D2E0F /* pelletBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = D5C79BC61AF71E07004D2E0F /* pelletBullet.png */; };
+		D5C79BC91AF72034004D2E0F /* BulletManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C79BC81AF72034004D2E0F /* BulletManager.swift */; };
+		D5E7D0331AF7267F00F67B66 /* TextureBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */; };
+		D5E7D0351AF72B0E00F67B66 /* FireDelayBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */; };
+		D5E7D0371AF72D0700F67B66 /* SpeedBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */; };
 		D5F774761AF69F3700EA2480 /* BattleScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5F774751AF69F3700EA2480 /* BattleScene.sks */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D529F9031AF9A3170093D762 /* StandardSpawnBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardSpawnBulletEffect.swift; sourceTree = "<group>"; };
 		D532F3471AF13FEA0091661E /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		D532F34B1AF146890091661E /* titleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImage.png; sourceTree = "<group>"; };
 		D532F34F1AF25C450091661E /* ShopScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopScene.swift; sourceTree = "<group>"; };
@@ -67,6 +77,14 @@
 		D5404A541AEFE68B00F46270 /* shootBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shootBtn.png; sourceTree = "<group>"; };
 		D5404A551AEFE68B00F46270 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		D5814CCC1AF6CA7900749B49 /* TapController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TapController.swift; sourceTree = "<group>"; };
+		D5814CCF1AF70CF800749B49 /* BulletEffectProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletEffectProtocol.swift; sourceTree = "<group>"; };
+		D5814CD11AF70F6F00749B49 /* SplitBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitBulletEffect.swift; sourceTree = "<group>"; };
+		D58D080B1AF8551A00E31640 /* LinePathBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinePathBulletEffect.swift; sourceTree = "<group>"; };
+		D5C79BC61AF71E07004D2E0F /* pelletBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pelletBullet.png; sourceTree = "<group>"; };
+		D5C79BC81AF72034004D2E0F /* BulletManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletManager.swift; sourceTree = "<group>"; };
+		D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureBulletEffect.swift; sourceTree = "<group>"; };
+		D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDelayBulletEffect.swift; sourceTree = "<group>"; };
+		D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedBulletEffect.swift; sourceTree = "<group>"; };
 		D5F774751AF69F3700EA2480 /* BattleScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BattleScene.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,7 +120,16 @@
 		D532F34E1AF25C170091661E /* Bullets */ = {
 			isa = PBXGroup;
 			children = (
+				D5404A4D1AEFE68B00F46270 /* Gun.swift */,
 				D5404A4C1AEFE68B00F46270 /* Bullet.swift */,
+				D5814CCF1AF70CF800749B49 /* BulletEffectProtocol.swift */,
+				D5814CD11AF70F6F00749B49 /* SplitBulletEffect.swift */,
+				D5C79BC81AF72034004D2E0F /* BulletManager.swift */,
+				D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */,
+				D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */,
+				D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */,
+				D58D080B1AF8551A00E31640 /* LinePathBulletEffect.swift */,
+				D529F9031AF9A3170093D762 /* StandardSpawnBulletEffect.swift */,
 			);
 			name = Bullets;
 			sourceTree = "<group>";
@@ -128,7 +155,6 @@
 		D5404A251AEFE61800F46270 /* BulletThief */ = {
 			isa = PBXGroup;
 			children = (
-				D5404A4D1AEFE68B00F46270 /* Gun.swift */,
 				D5814CCE1AF6D62100749B49 /* Control Schemes */,
 				D5404A511AEFE68B00F46270 /* Player.swift */,
 				D5404A521AEFE68B00F46270 /* PlayerData.swift */,
@@ -174,6 +200,7 @@
 		D5404A601AEFE69400F46270 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D5C79BC61AF71E07004D2E0F /* pelletBullet.png */,
 				D532F34B1AF146890091661E /* titleImage.png */,
 				D5404A4F1AEFE68B00F46270 /* leftArrow.png */,
 				D5404A501AEFE68B00F46270 /* player.png */,
@@ -273,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5404A371AEFE61800F46270 /* LaunchScreen.xib in Resources */,
+				D5C79BC71AF71E07004D2E0F /* pelletBullet.png in Resources */,
 				D5404A5A1AEFE68B00F46270 /* player.png in Resources */,
 				D5F774761AF69F3700EA2480 /* BattleScene.sks in Resources */,
 				D5404A341AEFE61800F46270 /* Images.xcassets in Resources */,
@@ -299,12 +327,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5404A2D1AEFE61800F46270 /* GameScene.swift in Sources */,
+				D5C79BC91AF72034004D2E0F /* BulletManager.swift in Sources */,
 				D532F3501AF25C450091661E /* ShopScene.swift in Sources */,
 				D5404A581AEFE68B00F46270 /* HudController.swift in Sources */,
+				D5E7D0331AF7267F00F67B66 /* TextureBulletEffect.swift in Sources */,
+				D529F9041AF9A3170093D762 /* StandardSpawnBulletEffect.swift in Sources */,
 				D5814CCD1AF6CA7900749B49 /* TapController.swift in Sources */,
+				D5E7D0351AF72B0E00F67B66 /* FireDelayBulletEffect.swift in Sources */,
 				D5404A5C1AEFE68B00F46270 /* PlayerData.swift in Sources */,
+				D5814CD21AF70F6F00749B49 /* SplitBulletEffect.swift in Sources */,
 				D5404A2F1AEFE61800F46270 /* GameViewController.swift in Sources */,
+				D5E7D0371AF72D0700F67B66 /* SpeedBulletEffect.swift in Sources */,
+				D5814CD01AF70CF800749B49 /* BulletEffectProtocol.swift in Sources */,
 				D5404A291AEFE61800F46270 /* AppDelegate.swift in Sources */,
+				D58D080C1AF8551A00E31640 /* LinePathBulletEffect.swift in Sources */,
 				D5404A5B1AEFE68B00F46270 /* Player.swift in Sources */,
 				D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */,
 				D5404A571AEFE68B00F46270 /* Gun.swift in Sources */,
@@ -433,7 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BulletThief/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -444,7 +480,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = BulletThief/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

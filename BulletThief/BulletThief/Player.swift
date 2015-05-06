@@ -12,6 +12,7 @@ import SpriteKit
 @IBDesignable class Player: SKSpriteNode {
     
     let MAX_SPEED = 100
+    var gun:Gun!
     
     override init(){
         var texture = SKTexture(imageNamed: "player")
@@ -33,6 +34,8 @@ import SpriteKit
         //        self.physicsBody?.contactTestBitMask = CollisionCategories.Enemy
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
+        
+        self.gun = Gun(initialEffects: [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 0.5), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), SplitBulletEffect()], owner: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,10 +54,14 @@ import SpriteKit
     
     func shoot(deltaTime:CFTimeInterval){
         //TODO: figure out bullet mechanics
+        gun.shoot(self)
     }
     
-    func update(deltaTime: Float){
-        
+    func update(deltaTime: CFTimeInterval){
+        gun.update(deltaTime)
+        if gun.canShoot {
+            gun.shoot(self)
+        }
     }
     
 

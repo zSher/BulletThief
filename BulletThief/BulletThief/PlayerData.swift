@@ -12,7 +12,7 @@ class PlayerData: NSObject, NSCoding {
     var gold: UInt = 0 //Standard currency
     var farthestTraveled: UInt = 0 //"highscore" per say
     var player: Player? //For saving player weapons etc
-    var controlScheme: String = "tap"
+    var controlScheme: ControlSchemes = ControlSchemes.Tap
     
     var path = documentDirectory.stringByAppendingPathComponent("BulletThief.archive")
     
@@ -25,7 +25,7 @@ class PlayerData: NSObject, NSCoding {
         self.player = player
     }
     
-    convenience init(player:Player, gold:UInt, farthestTraveled: UInt, controlScheme: String) {
+    convenience init(player:Player, gold:UInt, farthestTraveled: UInt, controlScheme: ControlSchemes) {
         self.init(player: player)
         self.gold = gold
         self.farthestTraveled = farthestTraveled
@@ -37,8 +37,8 @@ class PlayerData: NSObject, NSCoding {
         var player = aDecoder.decodeObjectForKey("player") as Player
         var gold = aDecoder.decodeObjectForKey("gold") as UInt
         var travel = aDecoder.decodeObjectForKey("travel") as UInt
-        var controlScheme = aDecoder.decodeObjectForKey("controlScheme") as String
-        self.init(player: player, gold: gold, farthestTraveled: travel, controlScheme: controlScheme)
+        var controlScheme = aDecoder.decodeObjectForKey("controlScheme") as Int
+        self.init(player: player, gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

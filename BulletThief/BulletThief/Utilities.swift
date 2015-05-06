@@ -38,5 +38,10 @@ enum Directions: Int {
     case Right
 }
 
+enum ControlSchemes: Int {
+    case Tap = 0
+    case Buttons
+}
+
 var documentDirectories = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 var documentDirectory = documentDirectories[0] as String
