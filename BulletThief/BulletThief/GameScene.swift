@@ -8,7 +8,7 @@
 
 import SpriteKit
 
-class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
+class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysicsContactDelegate {
     var player:Player!
     var hudController: HudController?
     var tapController: TapController?
@@ -17,6 +17,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
         self.physicsWorld.gravity = CGVectorMake(0, 0) //no gravity
+        self.physicsWorld.contactDelegate = self
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: frame)
         self.physicsBody?.categoryBitMask = CollisionCategories.EdgeBody
         
@@ -134,6 +135,28 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
             hudController?.update(deltaTime)
         } else {
             tapController?.update(deltaTime)
+        }
+    }
+    
+    //MARK: - Physics Delegate -
+    func didBeginContact(contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        // PlayerBullet vs Enemy
+        if ((firstBody.categoryBitMask & CollisionCategories.Enemy != 0) && (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
+            firstBody.node?.removeAllActions()
+            firstBody.node?.removeFromParent()
+            secondBody.node?.removeAllActions()
+            secondBody.node?.removeFromParent()
         }
     }
 }

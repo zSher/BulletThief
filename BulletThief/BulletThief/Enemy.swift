@@ -19,8 +19,16 @@ class Enemy: SKSpriteNode {
         
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 8), LinePathBulletEffect(owner: self), StandardSpawnBulletEffect()]
         self.gun = Gun(initialEffects: bulletEffects, owner: self)
+//        self.gun.setPhysicsBody(CollisionCategories., contactBit: <#UInt32#>, collisionBit: <#UInt32#>)
         self.speed = 5
         self.name = "enemy"
+        
+        self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
+        self.physicsBody?.dynamic = true
+        self.physicsBody?.categoryBitMask = CollisionCategories.Enemy
+        self.physicsBody?.contactTestBitMask = CollisionCategories.PlayerBullet
+        self.physicsBody?.collisionBitMask = CollisionCategories.None
+        self.physicsBody?.usesPreciseCollisionDetection = false
     }
 
     required init?(coder aDecoder: NSCoder) {

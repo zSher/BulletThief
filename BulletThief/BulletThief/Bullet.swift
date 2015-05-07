@@ -16,6 +16,17 @@ class Bullet: SKSpriteNode {
     convenience init(name:String){
         var tex = SKTexture(imageNamed: name)
         self.init(texture: tex, dmg: 1)
+        
+        setPhysicsBody(0, contactBit: 0, collisionBit: 0)
+    }
+    
+    func setPhysicsBody(category:UInt32, contactBit:UInt32, collisionBit:UInt32){
+        self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width)
+        self.physicsBody?.dynamic = true
+        self.physicsBody?.categoryBitMask = category
+        self.physicsBody?.contactTestBitMask = contactBit
+        self.physicsBody?.collisionBitMask = collisionBit
+        self.physicsBody?.usesPreciseCollisionDetection = false
     }
     
     init(texture:SKTexture, dmg:UInt) {

@@ -35,7 +35,10 @@ import SpriteKit
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
         
-        self.gun = Gun(initialEffects: [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 2), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), StandardSpawnBulletEffect()], owner: self)
+        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 2), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), StandardSpawnBulletEffect()]
+        
+        self.gun = Gun(initialEffects: bulletEffects, owner: self)
+        self.gun.setPhysicsBody(CollisionCategories.PlayerBullet, contactBit: CollisionCategories.Enemy, collisionBit: CollisionCategories.None)
     }
     
     required init?(coder aDecoder: NSCoder) {

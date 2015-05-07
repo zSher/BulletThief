@@ -34,6 +34,12 @@ class Gun: SKNode, GunProtocol {
         calculateEffects()
     }
     
+    func setPhysicsBody(category:UInt32, contactBit:UInt32, collisionBit:UInt32){
+        for bullet in bulletPool {
+            bullet.setPhysicsBody(category, contactBit: contactBit, collisionBit: collisionBit)
+        }
+    }
+    
     func calculateEffects(){
         for effect in bulletEffects {
             effect.applyEffect(self)
