@@ -40,13 +40,13 @@ class Gun: SKNode, GunProtocol {
         }
     }
     
-    func shoot(player:Player){
+    func shoot(){
         if canShoot {
-            var scene = player.scene!
+            var scene = owner!.scene!
             var spawnIndex = 0
             for i in 0..<self.numberOfBulletsToFire {
                 var bullet = bulletPool.removeAtIndex(0) //Pull bullet from front
-                bullet.position = CGPointMake(player.position.x + bulletSpawnPoints[spawnIndex].x, player.position.y + bulletSpawnPoints[spawnIndex].y)
+                bullet.position = CGPointMake(owner!.position.x + bulletSpawnPoints[spawnIndex].x, owner!.position.y + bulletSpawnPoints[spawnIndex].y)
                 
                 //Create fire action group
                 //follow path, return to the pool when done, remove from screen

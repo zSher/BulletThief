@@ -35,7 +35,7 @@ import SpriteKit
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
         
-        self.gun = Gun(initialEffects: [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 0.5), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), SplitBulletEffect()], owner: self)
+        self.gun = Gun(initialEffects: [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 2), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), StandardSpawnBulletEffect()], owner: self)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,13 +54,13 @@ import SpriteKit
     
     func shoot(deltaTime:CFTimeInterval){
         //TODO: figure out bullet mechanics
-        gun.shoot(self)
+        gun.shoot()
     }
     
     func update(deltaTime: CFTimeInterval){
         gun.update(deltaTime)
         if gun.canShoot {
-            gun.shoot(self)
+            gun.shoot()
         }
     }
     

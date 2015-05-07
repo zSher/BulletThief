@@ -12,6 +12,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
     var player:Player!
     var hudController: HudController?
     var tapController: TapController?
+    var enemy:Enemy!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -36,6 +37,10 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
             tapController = TapController(size: self.size)
             tapController?.delegate = self
         }
+        
+        var enemySpawner = SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(){self.spawnEnemy()}, SKAction.waitForDuration(2, withRange: 1)]))
+        self.runAction(enemySpawner)
+        spawnEnemy()
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -94,6 +99,33 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol {
         updateControls(deltaTime)
         player.update(deltaTime)
         
+        enumerateChildNodesWithName("enemy") {node, stop in
+            var enemy = node as Enemy
+            enemy.update(deltaTime)
+        }
+        
+    }
+    
+    // Return a random range
+    func randomRange(min: CGFloat, max: CGFloat) -> CGFloat {
+        assert(min
+            < max)
+        return CGFloat(arc4random()) / 0xFFFFFFFF * (max - min) + min
+    }
+    
+    func spawnEnemy(){
+        enemy = Enemy()
+        var xRand = self.randomRange(0, max: self.size.width)
+        var yPos = self.size.height + enemy.size.height
+        enemy.position = CGPointMake(xRand, yPos)
+        
+        //create straight line movement
+        var enemyPath = UIBezierPath()
+        enemyPath.moveToPoint(CGPointZero)
+        enemyPath.addLineToPoint(CGPointMake(0, -self.size.height - enemy.size.height - 20))
+        enemy.addPath(enemyPath)
+        enemy.addToScene(self)
+
     }
 
     //ugly but oh well.
