@@ -26,13 +26,7 @@ class TitleScene: SKScene {
         playButton.position = CGPointMake(CGRectGetMidX(self.frame), CGRectGetMidY(self.frame))
         playButton.name = "play"
         addChild(playButton)
-        
-        var Circle = SKShapeNode(circleOfRadius: 100 ) // Size of Circle
-        Circle.position = CGPointMake(frame.midX, frame.midY)  //Middle of Screen
-        Circle.strokeColor = SKColor.blackColor()
-        Circle.glowWidth = 1.0
-        Circle.fillColor = SKColor.orangeColor()
-        self.addChild(Circle)
+
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -41,10 +35,15 @@ class TitleScene: SKScene {
             let touchLocation = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(touchLocation)
             if touchedNode.name == playButton.name {
-                //go to store/menu screen
-                let transition = SKTransition.pushWithDirection(SKTransitionDirection.Up, duration: NSTimeInterval(0.25))
-                let scene = ShopScene(size: view!.bounds.size)
-                self.view?.presentScene(scene, transition: transition)
+                if let scene = ShopScene.unarchiveFromFile("ShopScene") as? ShopScene {
+                    // Configure the view.
+                    let skView = self.view! as SKView
+                    
+                    /* Set the scale mode to scale to fit the window */
+                    scene.scaleMode = SKSceneScaleMode.AspectFill
+                    
+                    skView.presentScene(scene)
+                }
             }
         }
         

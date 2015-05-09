@@ -31,11 +31,11 @@ import SpriteKit
         self.physicsBody?.dynamic = true
         self.physicsBody?.usesPreciseCollisionDetection = false
         self.physicsBody?.categoryBitMask = CollisionCategories.Player
-        //        self.physicsBody?.contactTestBitMask = CollisionCategories.Enemy
+        self.physicsBody?.contactTestBitMask = CollisionCategories.EnemyBullet
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
         
-        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 2), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), StandardSpawnBulletEffect()]
+        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 2), SpeedBulletEffect(speed: 10), LinePathBulletEffect(), StandardSpawnBulletEffect(), SplitBulletEffect(), SplitBulletEffect()]
         
         self.gun = Gun(initialEffects: bulletEffects, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.PlayerBullet, contactBit: CollisionCategories.Enemy, collisionBit: CollisionCategories.None)

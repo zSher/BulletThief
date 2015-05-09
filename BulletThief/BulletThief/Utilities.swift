@@ -19,7 +19,7 @@ struct CollisionCategories{
     static let None : UInt32 = 0x0
     static let Enemy : UInt32 = 0x1
     static let Player: UInt32 = 0x1 << 1
-//    static let EnemyBullet: UInt32 = 0x1 << 2
+    static let EnemyBullet: UInt32 = 0x1 << 2
     static let PlayerBullet: UInt32 = 0x1 << 3
     static let EdgeBody: UInt32 = 0x1 << 4
 

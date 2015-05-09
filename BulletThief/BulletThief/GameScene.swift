@@ -50,7 +50,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         for touch: AnyObject in touches {
             let touchLocation = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(touchLocation)
-
+            
             if touchedNode == self {
                 tapController?.touchBegan(touchLocation, touch: touch as UITouch)
             }
@@ -85,7 +85,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     }
     
     var timeSinceLastUpdate: CFTimeInterval = 0
-//    var testTime:Double = 0
+    //    var testTime:Double = 0
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         var deltaTime = currentTime - timeSinceLastUpdate
@@ -95,8 +95,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             deltaTime = 1 / 60.0
         }
         
-//        testTime += deltaTime
-//        println(testTime)
+        //        testTime += deltaTime
+        //        println(testTime)
         updateControls(deltaTime)
         player.update(deltaTime)
         
@@ -126,9 +126,9 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         enemyPath.addLineToPoint(CGPointMake(0, -self.size.height - enemy.size.height - 20))
         enemy.addPath(enemyPath)
         enemy.addToScene(self)
-
+        
     }
-
+    
     //ugly but oh well.
     func updateControls(deltaTime:CFTimeInterval){
         if playerData.controlScheme != ControlSchemes.Tap {
@@ -151,12 +151,25 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             secondBody = contact.bodyA
         }
         
-        // PlayerBullet vs Enemy
         if ((firstBody.categoryBitMask & CollisionCategories.Enemy != 0) && (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
+            // PlayerBullet vs Enemy
             firstBody.node?.removeAllActions()
             firstBody.node?.removeFromParent()
             secondBody.node?.removeAllActions()
             secondBody.node?.removeFromParent()
+        } else if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) && (secondBody.categoryBitMask & CollisionCategories.EnemyBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
+            // EnemyBullet vs Player
+            //TODO: Create a screen manager to hold windows for easy transitioning
+            if let scene = ShopScene.unarchiveFromFile("ShopScene") as? ShopScene {
+                // Configure the view.
+                let skView = self.view! as SKView
+                
+                /* Set the scale mode to scale to fit the window */
+                scene.scaleMode = SKSceneScaleMode.AspectFill
+                
+                skView.presentScene(scene)
+            }
+            
         }
     }
 }
