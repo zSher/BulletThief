@@ -28,7 +28,7 @@ class GameViewController: UIViewController {
         } else {
             //TODO: New player, maybe show tutorial?
         }
-        
+    
 
         
 //        if let scene = GameScene.unarchiveFromFile("BattleScene") as? GameScene {

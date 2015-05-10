@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D503814C1AFD98D500FA0BD5 /* ShopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D503814B1AFD98D500FA0BD5 /* ShopItem.swift */; };
 		D529F9041AF9A3170093D762 /* StandardSpawnBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D529F9031AF9A3170093D762 /* StandardSpawnBulletEffect.swift */; };
 		D532F3481AF13FEA0091661E /* TitleScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D532F3471AF13FEA0091661E /* TitleScene.swift */; };
 		D532F34C1AF146890091661E /* titleImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D532F34B1AF146890091661E /* titleImage.png */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D503814B1AFD98D500FA0BD5 /* ShopItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShopItem.swift; sourceTree = "<group>"; };
 		D529F9031AF9A3170093D762 /* StandardSpawnBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardSpawnBulletEffect.swift; sourceTree = "<group>"; };
 		D532F3471AF13FEA0091661E /* TitleScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleScene.swift; sourceTree = "<group>"; };
 		D532F34B1AF146890091661E /* titleImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = titleImage.png; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				D5404A301AEFE61800F46270 /* Main.storyboard */,
 				D5404A331AEFE61800F46270 /* Images.xcassets */,
 				D5404A351AEFE61800F46270 /* LaunchScreen.xib */,
+				D503814B1AFD98D500FA0BD5 /* ShopItem.swift */,
 			);
 			path = BulletThief;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 			files = (
 				D5404A2D1AEFE61800F46270 /* GameScene.swift in Sources */,
 				D5C79BC91AF72034004D2E0F /* BulletManager.swift in Sources */,
+				D503814C1AFD98D500FA0BD5 /* ShopItem.swift in Sources */,
 				D532F3501AF25C450091661E /* ShopScene.swift in Sources */,
 				D5404A581AEFE68B00F46270 /* HudController.swift in Sources */,
 				D5E7D0331AF7267F00F67B66 /* TextureBulletEffect.swift in Sources */,

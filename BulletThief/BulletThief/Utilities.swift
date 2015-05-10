@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension Array {
     func randomElement() -> T {
@@ -23,6 +24,13 @@ struct CollisionCategories{
     static let PlayerBullet: UInt32 = 0x1 << 3
     static let EdgeBody: UInt32 = 0x1 << 4
 
+}
+
+// Return a random range
+func randomRange(min: CGFloat, max: CGFloat) -> CGFloat {
+    assert(min
+        < max)
+    return CGFloat(arc4random()) / 0xFFFFFFFF * (max - min) + min
 }
 
 func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {

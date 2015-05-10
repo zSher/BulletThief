@@ -20,11 +20,13 @@ class Gun: SKNode, GunProtocol {
     var fireDelay: CFTimeInterval = 0
     var canShoot = true
     var bulletSpawnPoints: [CGPoint] = []
+    var bulletOffset: CGFloat = 5
+
     var owner:SKSpriteNode?
     
     override init(){
         super.init()
-        self.bulletPool = bulletManager.requestBullets(100)
+        self.bulletPool = bulletManager.requestBullets(300)
     }
     
     convenience init(initialEffects:[BulletEffectProtocol], owner:SKSpriteNode) {
@@ -52,7 +54,9 @@ class Gun: SKNode, GunProtocol {
             var spawnIndex = 0
             for i in 0..<self.numberOfBulletsToFire {
                 var bullet = bulletPool.removeAtIndex(0) //Pull bullet from front
-                bullet.position = CGPointMake(owner!.position.x + bulletSpawnPoints[spawnIndex].x, owner!.position.y + bulletSpawnPoints[spawnIndex].y)
+                var spawnOffsetX = randomRange(-bulletOffset, bulletOffset)
+                var spawnOffsetY = randomRange(-bulletOffset, bulletOffset)
+                bullet.position = CGPointMake(owner!.position.x + bulletSpawnPoints[spawnIndex].x + spawnOffsetX, owner!.position.y + bulletSpawnPoints[spawnIndex].y + spawnOffsetY)
                 
                 //Create fire action group
                 //follow path, return to the pool when done, remove from screen
