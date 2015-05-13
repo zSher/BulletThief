@@ -34,10 +34,10 @@ import SpriteKit
         self.physicsBody?.contactTestBitMask = CollisionCategories.EnemyBullet
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
-        
+
         //Pull data from global playerData object
-        self.speed = CGFloat(100 * playerData.speedLevel)
-        var bulletDecrease = CGFloat(playerData.bulletDelayLevel - UInt(1)) * (BASE_FIRE_DELAY * 0.1)
+        self.speed = 100 +  CGFloat(CGFloat(playerData.speedLevel - 1) * 0.10 * 100)
+        var bulletDecrease = CGFloat(playerData.bulletDelayLevel - 1) * (BASE_FIRE_DELAY * 0.1)
         var fireDelay = BASE_FIRE_DELAY - bulletDecrease
         
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: CFTimeInterval(fireDelay)), SpeedBulletEffect(speed: 8), LinePathBulletEffect(), StandardSpawnBulletEffect()]

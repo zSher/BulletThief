@@ -16,7 +16,6 @@ class PlayerData: NSObject, NSCoding {
     var bulletNumber: UInt = 1
     var bulletDamage: UInt = 1
     var bulletEffects: [BulletEffectProtocol] = []
-//    var player: Player? //For saving player weapons etc
     var controlScheme: ControlSchemes = ControlSchemes.Tap
     
     var path = documentDirectory.stringByAppendingPathComponent("BulletThief.archive")

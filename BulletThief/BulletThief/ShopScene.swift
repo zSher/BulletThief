@@ -23,7 +23,12 @@ class ShopScene: SKScene {
             ShopItem(name: "Thrusters +", detail: "Movement speed +10%", cost: 50, costChange: 50, costLevel: playerData.speedLevel, action: itemEffectLibrary.increaseMovementSpeed),
             ShopItem(name: "Coolant +", detail: "Fire rate +10%", cost: 100, costChange: 100, costLevel: playerData.bulletDelayLevel, action: itemEffectLibrary.increaseFireRate),
             ShopItem(name: "Caliber +", detail: "Bullet Damage +1", cost: 200, costChange: 200, costLevel: playerData.bulletDamage, action: itemEffectLibrary.increaseBulletDamage),
-            ShopItem(name: "Barrel +", detail: "Bullets fird 1+", cost: 300, costChange: 300, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber)
+            ShopItem(name: "Barrel +", detail: "Bullets fird 1+", cost: 300, costChange: 300, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber),
+            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed)
         ]
         
         updateShopDisplay()
@@ -35,6 +40,7 @@ class ShopScene: SKScene {
         shopItems[1].calculateCost(playerData.bulletDelayLevel)
         shopItems[2].calculateCost(playerData.bulletDamage)
         shopItems[3].calculateCost(playerData.bulletNumber)
+        //TODO: other items
     }
     
     func updateShopDisplay(){
@@ -47,10 +53,18 @@ class ShopScene: SKScene {
             var costLbl = node?.childNodeWithName("cost") as SKLabelNode
             var buySprite = node?.childNodeWithName("buyButton") as SKSpriteNode
             
-            var item = shopItems[itemNumber]
-            nameLbl.text = item.itemName
-            detailLbl.text = item.detailText
-            costLbl.text = "Cost: \(item.cost)"
+            if itemNumber < shopItems.count {
+                var item = shopItems[itemNumber]
+                nameLbl.text = item.itemName
+                detailLbl.text = item.detailText
+                costLbl.text = "Cost: \(item.cost)"
+            } else {
+                nameLbl.text = "Not available"
+                detailLbl.text = "Not available"
+                costLbl.text = "Cost: XXX"
+            }
+            
+
         }
     }
     
@@ -59,19 +73,19 @@ class ShopScene: SKScene {
             let touchLocation = touch.locationInNode(self)  
             let touchedNode = self.nodeAtPoint(touchLocation)
         
-            if touchedNode.name! == "buyButton" {
+            if touchedNode.name == "buyButton" {
                 var parent = touchedNode.parent!
                 
                 var blad: String = "hi"
                 var lastCharacterString: String = parent.name![4]
-                var item = shopItems[lastCharacterString.toInt()! - 1 + (currentShopIndex * 4)]
-                item.applyItemEffect(playerData)
-                updateCosts()
-                playerData.savePlayerData()
-                self.updateShopDisplay()
-            }
-            
-            if touchedNode.name == "start" {
+                if lastCharacterString.toInt()! - 1 + (currentShopIndex * 4) < shopItems.count {
+                    var item = shopItems[lastCharacterString.toInt()! - 1 + (currentShopIndex * 4)]
+                    item.applyItemEffect(playerData)
+                    updateCosts()
+                    playerData.savePlayerData()
+                    self.updateShopDisplay()
+                }
+            } else if touchedNode.name == "start" {
                 if let scene = GameScene.unarchiveFromFile("BattleScene") as? GameScene {
                     // Configure the view.
                     let skView = self.view! as SKView
@@ -79,7 +93,19 @@ class ShopScene: SKScene {
                     
                     skView.presentScene(scene)
                 }
+            } else if touchedNode.name == "nextPage" {
+                if (currentShopIndex + 1) * 4 < shopItems.count{
+                    currentShopIndex++
+                    updateShopDisplay()
+                }
+
+            } else if touchedNode.name == "backPage" {
+                if currentShopIndex > 0 {
+                    currentShopIndex--
+                    updateShopDisplay()
+                }
             }
+            
         }
     }
     
