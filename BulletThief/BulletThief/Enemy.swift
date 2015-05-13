@@ -13,15 +13,20 @@ class Enemy: SKSpriteNode {
     var gun:Gun!
     var movementPath:UIBezierPath?
 
-    override init(){
+    convenience override init(){
+        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 8), LinePathBulletEffect(direction: Directions.Down), StandardSpawnBulletEffect()]
+        self.init(textureName: "enemy", bulletEffects: bulletEffects, bulletCount: 20, speed: 5, name: "enemy")
+    }
+    
+    init(textureName: String, bulletEffects: [BulletEffectProtocol], bulletCount: UInt, speed:CGFloat, name:String) {
         var texture = SKTexture(imageNamed: "enemy")
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
-        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 8), LinePathBulletEffect(owner: self), StandardSpawnBulletEffect()]
-        self.gun = Gun(initialEffects: bulletEffects, owner: self)
+
+        self.gun = Gun(initialEffects: bulletEffects, bulletCount: 20, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.EnemyBullet, contactBit: CollisionCategories.Player, collisionBit: CollisionCategories.None)
-        self.speed = 5
-        self.name = "enemy"
+        self.speed = speed
+        self.name = name
         
         self.physicsBody = SKPhysicsBody(edgeLoopFromRect: self.frame)
         self.physicsBody?.dynamic = true

@@ -19,12 +19,17 @@ class LinePathBulletEffect: NSObject, BulletEffectProtocol {
         self.path = linePath
     }
     
-    //Owner based directional initializer.
-    init(owner:SKSpriteNode) {
-        if let enemy = owner as? Enemy {
+    // directional initializer.
+    init(direction: Directions) {
+        if direction == Directions.Down {
             var linePath = UIBezierPath()
             linePath.moveToPoint(CGPointZero) //MoveOnPath action is relative to object using it, start 0,0
             linePath.addLineToPoint(CGPointMake(0, -650))
+            self.path = linePath
+        } else {
+            var linePath = UIBezierPath()
+            linePath.moveToPoint(CGPointZero) //MoveOnPath action is relative to object using it, start 0,0
+            linePath.addLineToPoint(CGPointMake(0, 550))
             self.path = linePath
         }
     }

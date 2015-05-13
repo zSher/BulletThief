@@ -22,9 +22,13 @@ class BulletManager: NSObject {
     func requestBullets(numberOfBullets: UInt) -> [Bullet] {
         var bulletPack: [Bullet] = []
         for i in 0...numberOfBullets {
-            bulletPack.append(self.inactivePool.removeLast())
+            bulletPack.append(self.inactivePool.removeAtIndex(0))
         }
         return bulletPack
+    }
+    
+    func returnBullets(bullets: [Bullet]) {
+        self.inactivePool += bullets
     }
 }
 

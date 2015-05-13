@@ -64,6 +64,8 @@ func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
 enum Directions: Int {
     case Left = 0
     case Right
+    case Up
+    case Down
 }
 
 enum ControlSchemes: Int {

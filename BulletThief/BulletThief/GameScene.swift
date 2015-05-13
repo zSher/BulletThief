@@ -13,6 +13,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     var hudController: HudController?
     var tapController: TapController?
     var enemy:Enemy!
+    var distanceLbl:SKLabelNode!
+    var distance:CGFloat = 0
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -38,6 +40,9 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             tapController = TapController(size: self.size)
             tapController?.delegate = self
         }
+        
+        distanceLbl = childNodeWithName("distanceLbl") as SKLabelNode
+        distanceLbl.text = "\(distance)"
         
         var enemySpawner = SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(){self.spawnEnemy()}, SKAction.waitForDuration(2, withRange: 1)]))
         self.runAction(enemySpawner)
@@ -95,6 +100,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             deltaTime = 1 / 60.0
         }
         
+        distance += CGFloat(deltaTime)
+        distanceLbl.text = "\(floor(distance))"
         //        testTime += deltaTime
         //        println(testTime)
         updateControls(deltaTime)
@@ -107,16 +114,9 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         
     }
     
-    // Return a random range
-    func randomRange(min: CGFloat, max: CGFloat) -> CGFloat {
-        assert(min
-            < max)
-        return CGFloat(arc4random()) / 0xFFFFFFFF * (max - min) + min
-    }
-    
     func spawnEnemy(){
         enemy = Enemy()
-        var xRand = self.randomRange(0, max: self.size.width)
+        var xRand = randomRange(0, self.size.width)
         var yPos = self.size.height + enemy.size.height
         enemy.position = CGPointMake(xRand, yPos)
         

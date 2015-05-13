@@ -42,7 +42,7 @@ import SpriteKit
         
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: CFTimeInterval(fireDelay)), SpeedBulletEffect(speed: 8), LinePathBulletEffect(), StandardSpawnBulletEffect()]
         
-        self.gun = Gun(initialEffects: bulletEffects, owner: self)
+        self.gun = Gun(initialEffects: bulletEffects, bulletCount: 300, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.PlayerBullet, contactBit: CollisionCategories.Enemy, collisionBit: CollisionCategories.None)
         
         self.gun.numberOfBulletsToFire = Int(playerData.bulletNumber)

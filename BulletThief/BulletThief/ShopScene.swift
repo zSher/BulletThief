@@ -63,9 +63,10 @@ class ShopScene: SKScene {
                 detailLbl.text = "Not available"
                 costLbl.text = "Cost: XXX"
             }
-            
-
         }
+        
+        var goldNode = childNodeWithName("goldLbl") as SKLabelNode
+        goldNode.text = "Gold: \(playerData.gold)"
     }
     
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
@@ -80,10 +81,14 @@ class ShopScene: SKScene {
                 var lastCharacterString: String = parent.name![4]
                 if lastCharacterString.toInt()! - 1 + (currentShopIndex * 4) < shopItems.count {
                     var item = shopItems[lastCharacterString.toInt()! - 1 + (currentShopIndex * 4)]
-                    item.applyItemEffect(playerData)
-                    updateCosts()
-                    playerData.savePlayerData()
-                    self.updateShopDisplay()
+                    if playerData.gold >= item.cost{
+                        item.applyItemEffect(playerData)
+                        updateCosts()
+                        playerData.savePlayerData()
+                        self.updateShopDisplay()
+                    } else {
+                        //TODO: display alert, not enough gold
+                    }
                 }
             } else if touchedNode.name == "start" {
                 if let scene = GameScene.unarchiveFromFile("BattleScene") as? GameScene {

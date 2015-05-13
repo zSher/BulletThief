@@ -26,14 +26,18 @@ class Gun: SKNode, GunProtocol {
     
     override init(){
         super.init()
-        self.bulletPool = bulletManager.requestBullets(300)
     }
     
-    convenience init(initialEffects:[BulletEffectProtocol], owner:SKSpriteNode) {
+    convenience init(initialEffects:[BulletEffectProtocol], bulletCount:UInt, owner:SKSpriteNode) {
         self.init()
+        self.bulletPool = bulletManager.requestBullets(bulletCount)
         self.bulletEffects = initialEffects
         self.owner = owner
         calculateEffects()
+    }
+    
+    deinit {
+        bulletManager.returnBullets(bulletPool)
     }
     
     func setPhysicsBody(category:UInt32, contactBit:UInt32, collisionBit:UInt32){
