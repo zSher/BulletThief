@@ -10,8 +10,8 @@ import UIKit
 import SpriteKit
 
 @IBDesignable class Player: SKSpriteNode {
-    
-    let MAX_SPEED = 100
+    let BASE_SPEED = 100
+    let BASE_FIRE_DELAY:CGFloat = 2
     var gun:Gun!
     
     override init(){
@@ -35,10 +35,19 @@ import SpriteKit
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
         
-        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: 2), SpeedBulletEffect(speed: 8), LinePathBulletEffect(), StandardSpawnBulletEffect()]
+        //Pull data from global playerData object
+        self.speed = CGFloat(100 * playerData.speedLevel)
+        var bulletDecrease = CGFloat(playerData.bulletDelayLevel - UInt(1)) * (BASE_FIRE_DELAY * 0.1)
+        var fireDelay = BASE_FIRE_DELAY - bulletDecrease
+        
+        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "pelletBullet"), FireDelayBulletEffect(delay: CFTimeInterval(fireDelay)), SpeedBulletEffect(speed: 8), LinePathBulletEffect(), StandardSpawnBulletEffect()]
         
         self.gun = Gun(initialEffects: bulletEffects, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.PlayerBullet, contactBit: CollisionCategories.Enemy, collisionBit: CollisionCategories.None)
+        
+        self.gun.numberOfBulletsToFire = Int(playerData.bulletNumber)
+        //TODO: Bullet damage
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -48,7 +57,7 @@ import SpriteKit
     //direction: false is left | true is right
     func move(direction:Directions, deltaTime: CFTimeInterval) {
         
-        var amount = direction == .Left ? CGFloat(MAX_SPEED * -1) : CGFloat(MAX_SPEED)
+        var amount = direction == .Left ? CGFloat(self.speed * -1) : CGFloat(self.speed)
         
 //        self.parent?.scene?.
         

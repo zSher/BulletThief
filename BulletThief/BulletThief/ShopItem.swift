@@ -12,19 +12,27 @@ class ShopItem: NSObject {
     var itemName:String = ""
     var detailText:String = ""
     var cost:UInt = 0
+    var baseCost:UInt = 0
+    var costChange:UInt = 0
     var action: (data:PlayerData) -> ()
-    
     override init() {
         action = {(data) in }
         super.init()
     }
     
-    init(name:String, detail:String, cost:UInt, action: (data:PlayerData) -> ()) {
+    convenience init(name:String, detail:String, cost:UInt, costChange:UInt, costLevel:UInt,  action: (data:PlayerData) -> ()) {
+        self.init()
         self.itemName = name
         self.detailText = detail
-        self.cost = cost
+        self.baseCost = cost
+        self.costChange = costChange
+        calculateCost(costLevel)
         self.action = action
 
+    }
+    
+    func calculateCost(costLevel: UInt){
+        self.cost = baseCost + costChange * (costLevel - 1)
     }
     
     func applyItemEffect(data:PlayerData) {
@@ -37,12 +45,12 @@ class ItemEffectLibrary {
     
     //increase movement speed by 10%
     func increaseMovementSpeed(data:PlayerData) {
-        data.player!.speed += data.player!.speed * 0.10
+        data.speedLevel += 1
     }
     
     //increase bullet fire rate by 10%
     func increaseFireRate(data:PlayerData) {
-        data.player!.gun!.fireDelay -= data.player!.gun!.fireDelay * 0.10
+        data.bulletDelayLevel += 1
     }
     
     //increase bullet damage
@@ -53,6 +61,7 @@ class ItemEffectLibrary {
     
     //increase number of shots per fire
     func increaseBulletNumber(data:PlayerData){
-        data.player!.gun!.numberOfBulletsToFire += 1
+        data.bulletNumber += 1
     }
 }
+var itemEffectLibrary = ItemEffectLibrary()
