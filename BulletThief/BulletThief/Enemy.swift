@@ -12,18 +12,19 @@ import SpriteKit
 class Enemy: SKSpriteNode {
     var gun:Gun!
     var movementPath:UIBezierPath?
-
+    var weakened:Bool = false //flag to be stolen
+    
     convenience override init(){
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 8), LinePathBulletEffect(direction: Directions.Down), StandardSpawnBulletEffect()]
         self.init(textureName: "enemy", bulletEffects: bulletEffects, bulletCount: 20, speed: 5, name: "enemy")
     }
     
     init(textureName: String, bulletEffects: [BulletEffectProtocol], bulletCount: UInt, speed:CGFloat, name:String) {
-        var texture = SKTexture(imageNamed: "enemy")
+        var texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
 
-        self.gun = Gun(initialEffects: bulletEffects, bulletCount: 20, owner: self)
+        self.gun = Gun(initialEffects: bulletEffects, bulletCount: bulletCount, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.EnemyBullet, contactBit: CollisionCategories.Player, collisionBit: CollisionCategories.None)
         self.speed = speed
         self.name = name
@@ -50,6 +51,16 @@ class Enemy: SKSpriteNode {
         if gun.canShoot {
             gun.shoot()
         }
+    }
+    
+    func steal(){
+        
+    }
+
+    //Function called when about to die
+    func willDie(){
+//        self.removeAllActions()
+//        self.removeFromParent()
     }
     
     func addToScene(scene:SKScene){

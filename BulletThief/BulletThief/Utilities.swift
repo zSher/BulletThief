@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SpriteKit
 
 //MARK: - Extensions -
 extension Array {
@@ -29,6 +30,14 @@ extension String {
     
     subscript (r: Range<Int>) -> String {
         return substringWithRange(Range(start: advance(startIndex, r.startIndex), end: advance(startIndex, r.endIndex)))
+    }
+}
+
+extension SKSpriteNode {
+    func distanceBetween(other: SKSpriteNode) -> CGFloat {
+        var xVal = other.position.x - self.position.x
+        var yVal = other.position.y - self.position.y
+        return hypot(xVal, yVal)
     }
 }
 

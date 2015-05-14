@@ -53,7 +53,7 @@ class Gun: SKNode, GunProtocol {
     }
     
     func shoot(){
-        if canShoot {
+        if canShoot && bulletPool.count > 0{
             var scene = owner!.scene!
             var spawnIndex = 0
             for i in 0..<self.numberOfBulletsToFire {

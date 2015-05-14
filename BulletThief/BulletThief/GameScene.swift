@@ -30,6 +30,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         
         var test = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(25, 25))
         test.position = CGPointMake(self.size.width/2, self.size.height/2)
+        test.runAction(SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(-M_PI * 2), duration: 5.0)))
         addChild(test)
         if playerData.controlScheme != ControlSchemes.Tap {
             hudController = HudController(screenSize: self.size)
@@ -58,6 +59,12 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             
             if touchedNode == self {
                 tapController?.touchBegan(touchLocation, touch: touch as UITouch)
+            } else if touchedNode.name == "goldDashEnemy" {
+                var goldDash = touchedNode as GoldDashEnemy
+                println(player.distanceBetween(goldDash))
+                if goldDash.weakened && player.distanceBetween(goldDash) < 20.0 {
+                    goldDash.steal()
+                }
             }
         }
     }
@@ -107,7 +114,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         updateControls(deltaTime)
         player.update(deltaTime)
         
-        enumerateChildNodesWithName("enemy") {node, stop in
+        enumerateChildNodesWithName("goldDashEnemy") {node, stop in
             var enemy = node as Enemy
             enemy.update(deltaTime)
         }
@@ -115,7 +122,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     }
     
     func spawnEnemy(){
-        enemy = Enemy()
+        enemy = GoldDashEnemy()
         var xRand = randomRange(0, self.size.width)
         var yPos = self.size.height + enemy.size.height
         enemy.position = CGPointMake(xRand, yPos)
@@ -153,8 +160,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         
         if ((firstBody.categoryBitMask & CollisionCategories.Enemy != 0) && (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
             // PlayerBullet vs Enemy
-            firstBody.node?.removeAllActions()
-            firstBody.node?.removeFromParent()
+            (firstBody.node as Enemy).willDie()
             secondBody.node?.removeAllActions()
             secondBody.node?.removeFromParent()
         } else if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) && (secondBody.categoryBitMask & CollisionCategories.EnemyBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
