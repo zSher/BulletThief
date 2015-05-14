@@ -12,7 +12,6 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     var player:Player!
     var hudController: HudController?
     var tapController: TapController?
-    var enemy:Enemy!
     var distanceLbl:SKLabelNode!
     var distance:CGFloat = 0
     
@@ -114,6 +113,10 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         updateControls(deltaTime)
         player.update(deltaTime)
         
+        enumerateChildNodesWithName("enemy") {node, stop in
+            var enemy = node as Enemy
+            enemy.update(deltaTime)
+        }
         enumerateChildNodesWithName("goldDashEnemy") {node, stop in
             var enemy = node as Enemy
             enemy.update(deltaTime)
@@ -122,7 +125,14 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     }
     
     func spawnEnemy(){
-        enemy = GoldDashEnemy()
+        var enemy:Enemy!
+        var goldChance = randomRange(0, 1)
+        if goldChance < 0.1 {
+            enemy = GoldDashEnemy()
+        } else {
+            enemy = Enemy();
+        }
+
         var xRand = randomRange(0, self.size.width)
         var yPos = self.size.height + enemy.size.height
         enemy.position = CGPointMake(xRand, yPos)

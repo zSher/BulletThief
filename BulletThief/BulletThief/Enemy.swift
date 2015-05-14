@@ -59,8 +59,8 @@ class Enemy: SKSpriteNode {
 
     //Function called when about to die
     func willDie(){
-//        self.removeAllActions()
-//        self.removeFromParent()
+        self.removeAllActions()
+        self.removeFromParent()
     }
     
     func addToScene(scene:SKScene){
