@@ -13,6 +13,7 @@ import SpriteKit
     func reset()
 }
 
+//Main class for all guns, different kinds of guns are created via bullet effects
 class Gun: SKNode, GunProtocol {
     var numberOfBulletsToFire = 1
     var bulletEffects: [BulletEffectProtocol] = []
@@ -24,6 +25,7 @@ class Gun: SKNode, GunProtocol {
 
     var owner:SKSpriteNode?
     
+    //MARK: - Init
     override init(){
         super.init()
     }
@@ -36,28 +38,38 @@ class Gun: SKNode, GunProtocol {
         calculateEffects()
     }
     
+    //Return bullets back to the bullet manager on deinit
     deinit {
         bulletManager.returnBullets(bulletPool)
     }
     
+    //MARK: - methods -
+    
+    //Set the physics body of the bullets
     func setPhysicsBody(category:UInt32, contactBit:UInt32, collisionBit:UInt32){
         for bullet in bulletPool {
             bullet.setPhysicsBody(category, contactBit: contactBit, collisionBit: collisionBit)
         }
     }
     
+    //Recalculate all bullet effects (usually only done on creation)
     func calculateEffects(){
         for effect in bulletEffects {
             effect.applyEffect(self)
         }
     }
     
+    //Fire bullets
     func shoot(){
+        //If not on cool down and we have bullets available
         if canShoot && bulletPool.count > 0{
             var scene = owner!.scene!
             var spawnIndex = 0
+            //for each bullet we fire per fire
             for i in 0..<self.numberOfBulletsToFire {
                 var bullet = bulletPool.removeAtIndex(0) //Pull bullet from front
+                
+                //offset slightly if we shoot +1 bullet every fire
                 var spawnOffsetX = randomRange(-bulletOffset, bulletOffset)
                 var spawnOffsetY = randomRange(-bulletOffset, bulletOffset)
                 bullet.position = CGPointMake(owner!.position.x + bulletSpawnPoints[spawnIndex].x + spawnOffsetX, owner!.position.y + bulletSpawnPoints[spawnIndex].y + spawnOffsetY)
@@ -73,6 +85,8 @@ class Gun: SKNode, GunProtocol {
                 
                 scene.addChild(bullet)
                 bullet.runAction(actionGrp)
+                
+                //rotate around all spawn points
                 if spawnIndex < bulletSpawnPoints.count - 1 {
                     spawnIndex++
                 } else {
@@ -83,12 +97,7 @@ class Gun: SKNode, GunProtocol {
         }
     }
     
-    func reset(){
-        numberOfBulletsToFire = 1
-        bulletEffects = []
-        bulletPool = []
-    }
-    
+    //MARK: - update -
     var timeSinceLastShot: CFTimeInterval = 0
     func update(deltaTime: CFTimeInterval) {
         if !canShoot {

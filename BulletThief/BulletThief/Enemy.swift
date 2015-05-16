@@ -14,6 +14,7 @@ class Enemy: SKSpriteNode {
     var movementPath:UIBezierPath?
     var weakened:Bool = false //flag to be stolen
     
+    //MARK: - Init -
     convenience override init(){
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 8), LinePathBulletEffect(direction: Directions.Down), StandardSpawnBulletEffect()]
         self.init(textureName: "enemy", bulletEffects: bulletEffects, bulletCount: 20, speed: 5, name: "enemy")
@@ -42,10 +43,13 @@ class Enemy: SKSpriteNode {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Methods -
+    //Add path for movement
     func addPath(path:UIBezierPath) {
         self.movementPath = path
     }
     
+    //MARK: - Update -
     func update(deltaTime: CFTimeInterval){
         gun.update(deltaTime)
         if gun.canShoot {
@@ -53,6 +57,7 @@ class Enemy: SKSpriteNode {
         }
     }
     
+    //Function to perform when player steals this character's ability
     func steal(){
         
     }
@@ -63,6 +68,7 @@ class Enemy: SKSpriteNode {
         self.removeFromParent()
     }
     
+    //separate add function to add all components before being put onto screen
     func addToScene(scene:SKScene){
         var moveAction = SKAction.followPath(movementPath!.CGPath, asOffset: true, orientToPath: true, speed: self.speed)
         var removeAction = SKAction.removeFromParent()

@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+/// This bullet effect...
+///
+/// * Sets how long to wait until another bullet can be fired
 class FireDelayBulletEffect: NSObject, BulletEffectProtocol {
     var delayAmount: CFTimeInterval
     

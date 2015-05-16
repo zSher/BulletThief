@@ -120,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D51686671B080F3A00A60FEE /* Shop Items */ = {
+			isa = PBXGroup;
+			children = (
+				D503814B1AFD98D500FA0BD5 /* ShopItem.swift */,
+			);
+			name = "Shop Items";
+			sourceTree = "<group>";
+		};
 		D532F34D1AF25BEB0091661E /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -177,13 +185,13 @@
 				D5D34A031AFAF77E001458FF /* Actors */,
 				D532F34E1AF25C170091661E /* Bullets */,
 				D532F34D1AF25BEB0091661E /* Scenes */,
+				D51686671B080F3A00A60FEE /* Shop Items */,
 				D5404A601AEFE69400F46270 /* Images */,
 				D5404A261AEFE61800F46270 /* Supporting Files */,
 				D5404A281AEFE61800F46270 /* AppDelegate.swift */,
 				D5404A301AEFE61800F46270 /* Main.storyboard */,
 				D5404A331AEFE61800F46270 /* Images.xcassets */,
 				D5404A351AEFE61800F46270 /* LaunchScreen.xib */,
-				D503814B1AFD98D500FA0BD5 /* ShopItem.swift */,
 			);
 			path = BulletThief;
 			sourceTree = "<group>";

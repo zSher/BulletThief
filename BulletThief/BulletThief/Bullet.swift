@@ -9,10 +9,12 @@
 import UIKit
 import SpriteKit
 
+//Base for all bullets, bullets behave differently based on bullet effects
 class Bullet: SKSpriteNode {
     var damage: UInt = 0
     var path: UIBezierPath?
     
+    //MARK - init -
     convenience init(name:String){
         var tex = SKTexture(imageNamed: name)
         self.init(texture: tex, dmg: 1)
@@ -20,6 +22,13 @@ class Bullet: SKSpriteNode {
         setPhysicsBody(0, contactBit: 0, collisionBit: 0)
     }
     
+    init(texture:SKTexture, dmg:UInt) {
+        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
+        self.damage = dmg
+        
+    }
+
+    //Set the physics for this bullet
     func setPhysicsBody(category:UInt32, contactBit:UInt32, collisionBit:UInt32){
         self.physicsBody = SKPhysicsBody(circleOfRadius: self.size.width)
         self.physicsBody?.dynamic = true
@@ -29,12 +38,6 @@ class Bullet: SKSpriteNode {
         self.physicsBody?.usesPreciseCollisionDetection = false
     }
     
-    init(texture:SKTexture, dmg:UInt) {
-        super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
-        self.damage = dmg
-
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

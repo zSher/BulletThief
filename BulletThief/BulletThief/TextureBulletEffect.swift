@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+/// This bullet effect...
+///
+/// * Sets the texture of the bullet (which also effects its size)
 class TextureBulletEffect: NSObject, BulletEffectProtocol {
     var texture: SKTexture!
     

@@ -13,6 +13,7 @@ import SpriteKit
 ///If player can kill and absorb it, it gives gold
 class GoldDashEnemy: Enemy {
    
+    //MARK: - init -
     init(){
         var bulletEffects: [BulletEffectProtocol] = []
         super.init(textureName: "goldDashEnemy", bulletEffects: bulletEffects, bulletCount: 0, speed: 28, name: "goldDashEnemy")
@@ -22,6 +23,9 @@ class GoldDashEnemy: Enemy {
         fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Methods -
+    
+    //Always become disabled when killed
     override func willDie() {
         //Become "Disabled" and able to be stolen
         self.speed = 6

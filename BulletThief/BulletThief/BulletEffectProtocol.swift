@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+//Bullet effect protocol always have apply effect method
 @objc protocol BulletEffectProtocol {
     func applyEffect(gun:Gun)
 }

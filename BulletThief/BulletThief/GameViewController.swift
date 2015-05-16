@@ -26,28 +26,9 @@ class GameViewController: UIViewController {
         if let savedPlayerData = playerData.loadPlayerData() {
             playerData = savedPlayerData
         } else {
-            //TODO: New player, maybe show tutorial?
+            //TODO: New player, tutorial, use default playerData class
         }
     
-
-        
-//        if let scene = GameScene.unarchiveFromFile("BattleScene") as? GameScene {
-//            // Configure the view.
-//            let skView = self.view as SKView
-//            skView.showsFPS = true
-//            skView.showsNodeCount = true
-//            //            scene.size = skView.bounds.size
-//            
-//            
-//            /* Sprite Kit applies additional optimizations to improve rendering performance */
-//            skView.ignoresSiblingOrder = true
-//            
-//            /* Set the scale mode to scale to fit the window */
-//            scene.scaleMode = SKSceneScaleMode.AspectFill
-//            
-//            skView.presentScene(scene)
-//        }
-
         
         let skView = view as SKView
         skView.showsFPS = false

@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+/// This bullet effect...
+///
+/// * Sets the speed which a bullets moves
 class SpeedBulletEffect: NSObject, BulletEffectProtocol {
     var speed: CGFloat = 0
     

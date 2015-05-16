@@ -9,9 +9,9 @@
 import Foundation
 import SpriteKit
 
+//Hud protocol for on screen controller
 @objc protocol HudControllerProtocol {
     func moveDpad(hudController: HudController, deltaTime: CFTimeInterval, direction: Int)
-    func shootBtn(hudController: HudController, deltaTime: CFTimeInterval)
 }
 
 class HudController: SKNode {
@@ -22,16 +22,15 @@ class HudController: SKNode {
         case Shoot = "Shoot"
     }
     
-    let leftArrow: SKSpriteNode, rightArrow: SKSpriteNode, shootBtn: SKSpriteNode
+    let leftArrow: SKSpriteNode, rightArrow: SKSpriteNode
     var screenSize: CGSize!
     
     let RIGHT_ARROW_OFFSET: CGFloat = 30
     var delegate: HudControllerProtocol?
     var isTouchingControl = false
     var touchedDirection = Directions.Left.rawValue
-    var isTouchingButton = false
     
-    
+    //MARK: - init -
     init(screenSize: CGSize) {
         self.screenSize = screenSize
         var leftImg = SKTexture(imageNamed: "leftArrow")
@@ -46,23 +45,18 @@ class HudController: SKNode {
         rightArrow.position = CGPointMake(leftArrow.position.x + rightArrow.size.width + RIGHT_ARROW_OFFSET, 0)
         rightArrow.userInteractionEnabled = false
         
-        var shootImg = SKTexture(imageNamed: "shootBtn")
-        self.shootBtn = SKSpriteNode(texture: shootImg, color: UIColor.clearColor(), size: shootImg.size())
-        shootBtn.name = HudNames.Shoot.rawValue
-        shootBtn.position = CGPointMake(screenSize.width - shootImg.size().width, 0)
-        
         super.init()
         
         self.userInteractionEnabled = true
         addChild(leftArrow)
         addChild(rightArrow)
-        addChild(shootBtn)
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("Init with coder not created")
     }
     
+    //MARK: - Touches Methods -
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         super.touchesBegan(touches, withEvent: event)
         
@@ -71,7 +65,6 @@ class HudController: SKNode {
             let touchNode = nodeAtPoint(location)
             
             self.checkDpad(touchNode)
-            self.checkShoot(touchNode)
         }
     }
     
@@ -88,23 +81,14 @@ class HudController: SKNode {
                     isTouchingControl = false
                 }
             }
-            
-            if isTouchingButton {
-                //don't stop shooting when controls are tapped
-                if touchNode.name != HudNames.Left.rawValue || touchNode.name != HudNames.Right.rawValue {
-                    isTouchingButton = false
-                }
-            }
         }
         
     }
     
+    //MARK: - Update -
     func update(deltaTime: CFTimeInterval) {
         if isTouchingControl {
             delegate?.moveDpad(self, deltaTime: deltaTime, direction: touchedDirection)
-        }
-        if isTouchingButton {
-            delegate?.shootBtn(self, deltaTime: deltaTime)
         }
     }
     
@@ -115,13 +99,5 @@ class HudController: SKNode {
             touchedDirection = touchNode.name == HudNames.Left.rawValue ? Directions.Left.rawValue : Directions.Right.rawValue
         }
     }
-    
-    func checkShoot(touchNode:SKNode) {
-        if touchNode.name == HudNames.Shoot.rawValue {
-            isTouchingButton = true
-        }
-    }
-    
-    
     
 }

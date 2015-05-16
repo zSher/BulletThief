@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 
+//Manager to hold a pool of bullets that can be given out to classes without needing to instantiate more
 class BulletManager: NSObject {
     var inactivePool: [Bullet] = []
     
@@ -30,8 +31,9 @@ class BulletManager: NSObject {
     }
     
     func returnBullets(bullets: [Bullet]) {
+        //TODO: reset bullets to normal
         self.inactivePool += bullets
     }
 }
 
-var bulletManager:BulletManager = BulletManager(bulletCount: 10000)
+var bulletManager:BulletManager = BulletManager(bulletCount: 10000) //10,000 should be enough, right?

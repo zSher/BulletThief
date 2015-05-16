@@ -9,6 +9,7 @@
 import Foundation
 import SpriteKit
 
+//Protocol for tap controller interface
 @objc protocol TapControllerProtocol {
     func directionTapped(tapController: TapController, deltaTime: CFTimeInterval, direction: Int)
 }
@@ -26,12 +27,13 @@ class TapController: NSObject {
     //This prevents movement from stopping if 2 fingers are tapped
     var focusedTouch:UITouch?
     
+    //MARK: - init -
     init(size:CGSize) {
         sizeOfScreen = size
         middleLine = size.width / 2
     }
     
-    
+    //MARK: - touches
     func touchBegan(location: CGPoint, touch:UITouch) {
         isSideTapped = true
         side = location.x < middleLine ? 0 : 1
@@ -44,6 +46,7 @@ class TapController: NSObject {
         }
     }
     
+    //MARK: - update -
     func update(deltaTime: CFTimeInterval) {
         if isSideTapped {
             delegate?.directionTapped(self, deltaTime: deltaTime, direction: side)

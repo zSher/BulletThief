@@ -12,7 +12,7 @@ import SpriteKit
 class TitleScene: SKScene {
     var playButton:SKSpriteNode!
     
-    //init
+    //MARK: - Init -
     override func didMoveToView(view: SKView) {
         self.backgroundColor = UIColor.blackColor()
         
@@ -29,6 +29,7 @@ class TitleScene: SKScene {
 
     }
     
+    //MARK: - touches -
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         
         for touch: AnyObject in touches {

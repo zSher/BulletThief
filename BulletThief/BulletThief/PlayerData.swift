@@ -8,6 +8,7 @@
 
 import Foundation
 
+///Singleton class that holds all player info
 class PlayerData: NSObject, NSCoding {
     var gold: UInt = 0 //Standard currency
     var farthestTraveled: UInt = 0 //"highscore" per say
@@ -20,6 +21,7 @@ class PlayerData: NSObject, NSCoding {
     
     var path = documentDirectory.stringByAppendingPathComponent("BulletThief.archive")
     
+    //MARK - Init -
     override init(){
         super.init()
     }
@@ -35,6 +37,7 @@ class PlayerData: NSObject, NSCoding {
         self.bulletDamage = bulletDamage
     }
     
+    //MARK: - NSCoder -
     required convenience init(coder aDecoder: NSCoder) {
         //Grab data, call convience init
         var gold = aDecoder.decodeObjectForKey("gold") as UInt

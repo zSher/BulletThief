@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+/// This bullet effect...
+///
+/// * Sets the path of the bullet to be a stright line up or down
 class LinePathBulletEffect: NSObject, BulletEffectProtocol {
     var path: UIBezierPath!
     

@@ -27,10 +27,13 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         addChild(player)
         playerSpawn.removeFromParent()
         
+        //Test object for testing
         var test = SKSpriteNode(color: UIColor.blueColor(), size: CGSizeMake(25, 25))
         test.position = CGPointMake(self.size.width/2, self.size.height/2)
         test.runAction(SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(-M_PI * 2), duration: 5.0)))
         addChild(test)
+        
+        //Chose a control scheme to display
         if playerData.controlScheme != ControlSchemes.Tap {
             hudController = HudController(screenSize: self.size)
             hudController!.delegate = self
@@ -49,6 +52,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         spawnEnemy()
     }
     
+    //MARK: - touches -
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         /* Called when a touch begins */
         
@@ -58,9 +62,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             
             if touchedNode == self {
                 tapController?.touchBegan(touchLocation, touch: touch as UITouch)
-            } else if touchedNode.name == "goldDashEnemy" {
+            } else if touchedNode.name == "goldDashEnemy" { //TODO: make more generic for all enemies
                 var goldDash = touchedNode as GoldDashEnemy
-                println(player.distanceBetween(goldDash))
                 if goldDash.weakened && player.distanceBetween(goldDash) < 20.0 {
                     goldDash.steal()
                 }
@@ -69,8 +72,6 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     }
     
     override func touchesEnded(touches: NSSet, withEvent event: UIEvent) {
-        
-        
         for touch: AnyObject in touches {
             var to = touch as UITouch
             
@@ -81,6 +82,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         }
     }
     
+    //MARK: - tap controller protocol -
     func directionTapped(tapController: TapController, deltaTime: CFTimeInterval, direction: Int) {
         self.player.move(Directions(rawValue: direction)!, deltaTime: deltaTime)
     }
@@ -91,12 +93,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         self.player.move(Directions(rawValue: direction)!, deltaTime: deltaTime)
     }
     
-    func shootBtn(hudController: HudController, deltaTime: CFTimeInterval) {
-        self.player.shoot(deltaTime)
-    }
-    
+    //MARK: - update -
     var timeSinceLastUpdate: CFTimeInterval = 0
-    //    var testTime:Double = 0
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
         var deltaTime = currentTime - timeSinceLastUpdate
@@ -108,11 +106,11 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         
         distance += CGFloat(deltaTime)
         distanceLbl.text = "\(floor(distance))"
-        //        testTime += deltaTime
-        //        println(testTime)
+        
         updateControls(deltaTime)
         player.update(deltaTime)
         
+        //TODO: genericify
         enumerateChildNodesWithName("enemy") {node, stop in
             var enemy = node as Enemy
             enemy.update(deltaTime)
@@ -124,6 +122,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         
     }
     
+    //AI Manager spawns new enemies
     func spawnEnemy(){
         var enemy:Enemy!
         var goldChance = randomRange(0, 1)

@@ -9,9 +9,8 @@
 import UIKit
 import SpriteKit
 
-
-
-
+//Middle scene player deals with to upgrade their player
+//Shop has multiple pages of items
 class ShopScene: SKScene {
     var table:UITableView!
     var currentShopIndex = 0
@@ -19,6 +18,8 @@ class ShopScene: SKScene {
     
     override func didMoveToView(view: SKView) {
         self.backgroundColor = UIColor.blackColor()
+        
+        //Create a main set of items that scale off of character's current upgrades
         shopItems = [
             ShopItem(name: "Thrusters +", detail: "Movement speed +10%", cost: 50, costChange: 50, costLevel: playerData.speedLevel, action: itemEffectLibrary.increaseMovementSpeed),
             ShopItem(name: "Coolant +", detail: "Fire rate +10%", cost: 100, costChange: 100, costLevel: playerData.bulletDelayLevel, action: itemEffectLibrary.increaseFireRate),
@@ -35,6 +36,7 @@ class ShopScene: SKScene {
     }
     
     //TODO: Fix up, clean up
+    //Update the costs of items after you purchase them.
     func updateCosts(){
         shopItems[0].calculateCost(playerData.speedLevel)
         shopItems[1].calculateCost(playerData.bulletDelayLevel)
@@ -43,6 +45,7 @@ class ShopScene: SKScene {
         //TODO: other items
     }
     
+    //Refresh the shop display based on current shop index
     func updateShopDisplay(){
         //Update UI with Shop content
         for i in 0..<4 {
@@ -69,6 +72,7 @@ class ShopScene: SKScene {
         goldNode.text = "Gold: \(playerData.gold)"
     }
     
+    //MARK: - touches -
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         for touch: AnyObject in touches {
             let touchLocation = touch.locationInNode(self)  
@@ -77,7 +81,6 @@ class ShopScene: SKScene {
             if touchedNode.name == "buyButton" {
                 var parent = touchedNode.parent!
                 
-                var blad: String = "hi"
                 var lastCharacterString: String = parent.name![4]
                 if lastCharacterString.toInt()! - 1 + (currentShopIndex * 4) < shopItems.count {
                     var item = shopItems[lastCharacterString.toInt()! - 1 + (currentShopIndex * 4)]

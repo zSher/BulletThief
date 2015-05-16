@@ -9,6 +9,9 @@
 import Foundation
 import SpriteKit
 
+/// This bullet effect...
+///
+/// * Sets the spawn point of a gun to the middle of an actor
 class StandardSpawnBulletEffect: NSObject, BulletEffectProtocol {
     
     override init() {

@@ -8,13 +8,14 @@
 
 import UIKit
 
+//
 class ShopItem: NSObject {
     var itemName:String = ""
     var detailText:String = ""
     var cost:UInt = 0
     var baseCost:UInt = 0
     var costChange:UInt = 0
-    var action: (data:PlayerData) -> ()
+    var action: (data:PlayerData) -> () //callback for what this item should do when purchased
     override init() {
         action = {(data) in }
         super.init()
@@ -40,7 +41,7 @@ class ShopItem: NSObject {
     }
 }
 
-//Singleton to hold all item effects
+//Singleton to hold all item effects that are given to a shop item
 class ItemEffectLibrary {
     
     //increase movement speed by 10%

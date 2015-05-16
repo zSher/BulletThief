@@ -9,11 +9,13 @@
 import UIKit
 import SpriteKit
 
+///Visual representation of the player when in game mode
 @IBDesignable class Player: SKSpriteNode {
     let BASE_SPEED = 100
     let BASE_FIRE_DELAY:CGFloat = 2
     var gun:Gun!
     
+    //MARK: - Init -
     override init(){
         var texture = SKTexture(imageNamed: "player")
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
@@ -54,21 +56,15 @@ import SpriteKit
         super.init(coder: aDecoder)
     }
     
+    //MARK: - Movement -
     //direction: false is left | true is right
     func move(direction:Directions, deltaTime: CFTimeInterval) {
         
         var amount = direction == .Left ? CGFloat(self.speed * -1) : CGFloat(self.speed)
-        
-//        self.parent?.scene?.
-        
         self.position.x += amount * CGFloat(deltaTime)
     }
     
-    func shoot(deltaTime:CFTimeInterval){
-        //TODO: figure out bullet mechanics
-        gun.shoot()
-    }
-    
+    //MARK: - Update -
     func update(deltaTime: CFTimeInterval){
         gun.update(deltaTime)
         if gun.canShoot {
