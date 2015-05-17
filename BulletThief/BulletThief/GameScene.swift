@@ -67,6 +67,11 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
                 if goldDash.weakened && player.distanceBetween(goldDash) < 20.0 {
                     goldDash.steal()
                 }
+            } else if touchedNode.name == "enemy" {
+                var enemy = touchedNode as Enemy
+                if enemy.weakened && player.distanceBetween(enemy) < 20.0 {
+                    enemy.steal()
+                }
             }
         }
     }
@@ -115,11 +120,12 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             var enemy = node as Enemy
             enemy.update(deltaTime)
         }
-        enumerateChildNodesWithName("goldDashEnemy") {node, stop in
-            var enemy = node as Enemy
-            enemy.update(deltaTime)
-        }
+//        enumerateChildNodesWithName("goldDashEnemy") {node, stop in
+//            var enemy = node as Enemy
+//            enemy.update(deltaTime)
+//        }s
         
+    
     }
     
     //AI Manager spawns new enemies
@@ -129,7 +135,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         if goldChance < 0.1 {
             enemy = GoldDashEnemy()
         } else {
-            enemy = Enemy();
+//            enemy = Enemy()
+            enemy = WaveEnemy()
         }
 
         var xRand = randomRange(0, self.size.width)
@@ -182,6 +189,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
                 /* Set the scale mode to scale to fit the window */
                 scene.scaleMode = SKSceneScaleMode.AspectFill
                 
+                playerData.savePlayerData()
                 skView.presentScene(scene)
             }
             

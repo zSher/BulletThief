@@ -12,14 +12,24 @@ import SpriteKit
 /// This bullet effect...
 ///
 /// * Sets how long to wait until another bullet can be fired
-class FireDelayBulletEffect: NSObject, BulletEffectProtocol {
+class FireDelayBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
     var delayAmount: CFTimeInterval
     
     init(delay:CFTimeInterval){
         self.delayAmount = delay
     }
     
+    required init(coder aDecoder: NSCoder) {
+        self.delayAmount = aDecoder.decodeObjectForKey("delay") as CFTimeInterval
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(delayAmount, forKey: "delay")
+    }
+
+    
     func applyEffect(gun: Gun) {
         gun.fireDelay = delayAmount
     }
+    
 }

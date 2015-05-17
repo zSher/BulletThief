@@ -52,7 +52,7 @@ class Enemy: SKSpriteNode {
     //MARK: - Update -
     func update(deltaTime: CFTimeInterval){
         gun.update(deltaTime)
-        if gun.canShoot {
+        if gun.canShoot && !weakened {
             gun.shoot()
         }
     }

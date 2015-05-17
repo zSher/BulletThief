@@ -16,7 +16,8 @@ class PlayerData: NSObject, NSCoding {
     var bulletDelayLevel: UInt = 1
     var bulletNumber: UInt = 1
     var bulletDamage: UInt = 1
-    var bulletEffects: [BulletEffectProtocol] = []
+    var bulletTexture = "pelletBullet"
+    var bulletSet: BulletSet?
     var controlScheme: ControlSchemes = ControlSchemes.Tap
     
     var path = documentDirectory.stringByAppendingPathComponent("BulletThief.archive")
@@ -24,9 +25,10 @@ class PlayerData: NSObject, NSCoding {
     //MARK - Init -
     override init(){
         super.init()
+        bulletSet = DefaultSet(data: self)
     }
     
-    convenience init(gold:UInt, farthestTraveled: UInt, controlScheme: ControlSchemes, speed: UInt, bulletDelay: UInt, bulletNum: UInt, bulletDamage: UInt) {
+    convenience init(gold:UInt, farthestTraveled: UInt, controlScheme: ControlSchemes, speed: UInt, bulletDelay: UInt, bulletNum: UInt, bulletDamage: UInt, bulletSet: BulletSet?) {
         self.init()
         self.gold = gold
         self.farthestTraveled = farthestTraveled
@@ -35,6 +37,7 @@ class PlayerData: NSObject, NSCoding {
         self.bulletDelayLevel = bulletDelay
         self.bulletNumber = bulletNum
         self.bulletDamage = bulletDamage
+        self.bulletSet = bulletSet ?? DefaultSet(data: self)
     }
     
     //MARK: - NSCoder -
@@ -47,9 +50,10 @@ class PlayerData: NSObject, NSCoding {
         var speed = aDecoder.decodeObjectForKey("speed") as? UInt ?? 1
         var bulletDelay = aDecoder.decodeObjectForKey("bDelay") as? UInt ?? 1
         var bulletDamage = aDecoder.decodeObjectForKey("bDamage") as? UInt ?? 1
+        var bulletSet = aDecoder.decodeObjectForKey("bSet") as? BulletSet
         //TODO: BulletEffects
         
-        self.init(gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!, speed: speed, bulletDelay: bulletDelay, bulletNum: bullets, bulletDamage: bulletDamage)
+        self.init(gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!, speed: speed, bulletDelay: bulletDelay, bulletNum: bullets, bulletDamage: bulletDamage, bulletSet: bulletSet)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -65,10 +69,6 @@ class PlayerData: NSObject, NSCoding {
     func savePlayerData(){
         if NSKeyedArchiver.archiveRootObject(self, toFile: path) {
             println("Success writing to file!")
-            
-            //Debug code below
-            //            var loadTiles = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as NSArray
-            //            println(loadTiles)
         }
         else {
             println("Unable to write to file!")

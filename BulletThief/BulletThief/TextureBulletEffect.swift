@@ -12,12 +12,20 @@ import SpriteKit
 /// This bullet effect...
 ///
 /// * Sets the texture of the bullet (which also effects its size)
-class TextureBulletEffect: NSObject, BulletEffectProtocol {
+class TextureBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
     var texture: SKTexture!
     
     init(textureName: String){
         super.init()
         self.texture = SKTexture(imageNamed: textureName)
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.texture = aDecoder.decodeObjectForKey("texture") as SKTexture
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(texture, forKey: "texture")
     }
     
     func applyEffect(gun: Gun) {
@@ -27,4 +35,5 @@ class TextureBulletEffect: NSObject, BulletEffectProtocol {
             //TODO: Determine if physics need to be recalculated
         }
     }
+    
 }

@@ -12,12 +12,21 @@ import SpriteKit
 /// This bullet effect...
 ///
 /// * Sets the speed which a bullets moves
-class SpeedBulletEffect: NSObject, BulletEffectProtocol {
+class SpeedBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
     var speed: CGFloat = 0
     
     init(speed:CGFloat) {
         self.speed = speed
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.speed = aDecoder.decodeObjectForKey("speed") as CGFloat
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(speed, forKey: "speed")
+    }
+
     
     func applyEffect(gun: Gun) {
         for bullet in gun.bulletPool {

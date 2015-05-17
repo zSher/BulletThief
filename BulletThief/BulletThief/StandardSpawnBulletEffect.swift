@@ -12,11 +12,20 @@ import SpriteKit
 /// This bullet effect...
 ///
 /// * Sets the spawn point of a gun to the middle of an actor
-class StandardSpawnBulletEffect: NSObject, BulletEffectProtocol {
+class StandardSpawnBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
     
     override init() {
         
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        
+    }
+
     
     func applyEffect(gun: Gun) {
         var spawnPoint:CGPoint = CGPointZero

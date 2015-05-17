@@ -69,6 +69,10 @@ func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
     return nil
 }
 
+func degreesToRad(x:CGFloat) -> CGFloat {
+    return CGFloat(M_PI) * x / CGFloat(180.0)
+}
+
 //MARK: - Enums -
 enum Directions: Int {
     case Left = 0
@@ -85,3 +89,4 @@ enum ControlSchemes: Int {
 //MARK: - File IO -
 var documentDirectories = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)
 var documentDirectory = documentDirectories[0] as String
+

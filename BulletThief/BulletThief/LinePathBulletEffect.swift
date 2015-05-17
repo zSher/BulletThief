@@ -12,7 +12,7 @@ import SpriteKit
 /// This bullet effect...
 ///
 /// * Sets the path of the bullet to be a stright line up or down
-class LinePathBulletEffect: NSObject, BulletEffectProtocol {
+class LinePathBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
     var path: UIBezierPath!
     
     override init() {
@@ -36,6 +36,15 @@ class LinePathBulletEffect: NSObject, BulletEffectProtocol {
             self.path = linePath
         }
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        self.path = aDecoder.decodeObjectForKey("path") as UIBezierPath
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(path, forKey: "path")
+    }
+
     
     func applyEffect(gun: Gun) {
         for bullet in gun.bulletPool {

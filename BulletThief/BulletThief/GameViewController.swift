@@ -27,6 +27,7 @@ class GameViewController: UIViewController {
             playerData = savedPlayerData
         } else {
             //TODO: New player, tutorial, use default playerData class
+            playerData.savePlayerData() //Initial save
         }
     
         

@@ -9,12 +9,8 @@
 import UIKit
 import SpriteKit
 
-@objc protocol GunProtocol {
-    func reset()
-}
-
 //Main class for all guns, different kinds of guns are created via bullet effects
-class Gun: SKNode, GunProtocol {
+class Gun: SKNode {
     var numberOfBulletsToFire = 1
     var bulletEffects: [BulletEffectProtocol] = []
     var bulletPool: [Bullet] = [] //the pool of bullets to be fired

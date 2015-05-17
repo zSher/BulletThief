@@ -86,6 +86,7 @@ class ShopScene: SKScene {
                     var item = shopItems[lastCharacterString.toInt()! - 1 + (currentShopIndex * 4)]
                     if playerData.gold >= item.cost{
                         item.applyItemEffect(playerData)
+                        playerData.gold -= item.cost
                         updateCosts()
                         playerData.savePlayerData()
                         self.updateShopDisplay()

@@ -1,28 +1,26 @@
 //
-//  GoldDashEnemy.swift
+//  WaveEnemy.swift
 //  BulletThief
 //
-//  Created by Zachary on 5/13/15.
+//  Created by Zachary on 5/16/15.
 //  Copyright (c) 2015 Zachary. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
-///Very fast enemy that dives across the screen.
-///If player can kill and absorb it, it gives gold
-class GoldDashEnemy: Enemy {
-   
+class WaveEnemy: Enemy {
+    
     //MARK: - init -
     init(){
-        var bulletEffects: [BulletEffectProtocol] = []
-        super.init(textureName: "goldDashEnemy", bulletEffects: bulletEffects, bulletCount: 0, speed: 28, name: "enemy")
+        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 10), WavePathBulletEffect(dir: Directions.Down), StandardSpawnBulletEffect()]
+        super.init(textureName: "waveEnemy", bulletEffects: bulletEffects, bulletCount: 10, speed: 8, name: "enemy")
     }
 
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        fatalError("init not implemented")
     }
-    
+
     //MARK: - Methods -
     
     //Always become disabled when killed
@@ -31,7 +29,7 @@ class GoldDashEnemy: Enemy {
         self.speed = 6
         self.weakened = true
         self.physicsBody?.categoryBitMask = CollisionCategories.None //become unhittable
-//        self.removeAllActions()
+        //        self.removeAllActions()
         var colorizeAction = SKAction.colorizeWithColor(UIColor.grayColor(), colorBlendFactor: 1, duration: 5.0)
         var rotateAction = SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(-M_PI * 2), duration: 10.0))
         var groupAction = SKAction.group([rotateAction, colorizeAction])
