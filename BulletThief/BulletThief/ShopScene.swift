@@ -114,6 +114,7 @@ class ShopScene: SKScene {
             } else if touchedNode.name == "start" {
                 if let scene = GameScene.unarchiveFromFile("BattleScene") as? GameScene {
                     // Configure the view.
+                    playerData.bulletSet?.recalculateBulletEffects(playerData)
                     let skView = self.view! as SKView
                     scene.scaleMode = SKSceneScaleMode.AspectFill
                     

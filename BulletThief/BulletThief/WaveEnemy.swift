@@ -29,15 +29,14 @@ class WaveEnemy: Enemy {
         self.speed = 6
         self.weakened = true
         self.physicsBody?.categoryBitMask = CollisionCategories.None //become unhittable
-        //        self.removeAllActions()
         var colorizeAction = SKAction.colorizeWithColor(UIColor.grayColor(), colorBlendFactor: 1, duration: 5.0)
         var rotateAction = SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(-M_PI * 2), duration: 10.0))
         var groupAction = SKAction.group([rotateAction, colorizeAction])
         self.runAction(groupAction)
     }
     
-    override func steal(){
-        playerData.gold += 10 //absorbing gives 10 hold
+    override func steal(player:Player){
+        player.gun!.addEffect(WavePathBulletEffect(dir: Directions.Up))
         self.removeAllActions()
         self.removeFromParent()
     }

@@ -58,7 +58,7 @@ class Enemy: SKSpriteNode {
     }
     
     //Function to perform when player steals this character's ability
-    func steal(){
+    func steal(player:Player){
         
     }
 

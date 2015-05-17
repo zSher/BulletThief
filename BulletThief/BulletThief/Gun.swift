@@ -56,6 +56,11 @@ class Gun: SKNode {
         }
     }
     
+    func addEffect(bEffect: BulletEffectProtocol){
+        bEffect.applyEffect(self)
+        self.bulletEffects.append(bEffect)
+    }
+    
     //Fire bullets
     func shoot(){
         //If not on cool down and we have bullets available

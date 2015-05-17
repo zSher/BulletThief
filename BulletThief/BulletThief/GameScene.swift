@@ -62,15 +62,10 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             
             if touchedNode == self {
                 tapController?.touchBegan(touchLocation, touch: touch as UITouch)
-            } else if touchedNode.name == "goldDashEnemy" { //TODO: make more generic for all enemies
-                var goldDash = touchedNode as GoldDashEnemy
-                if goldDash.weakened && player.distanceBetween(goldDash) < 20.0 {
-                    goldDash.steal()
-                }
             } else if touchedNode.name == "enemy" {
                 var enemy = touchedNode as Enemy
-                if enemy.weakened && player.distanceBetween(enemy) < 20.0 {
-                    enemy.steal()
+                if enemy.weakened && player.distanceBetween(enemy) < 25.0 {
+                    enemy.steal(player)
                 }
             }
         }

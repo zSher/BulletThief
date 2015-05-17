@@ -38,7 +38,7 @@ class GoldDashEnemy: Enemy {
         self.runAction(groupAction)
     }
     
-    override func steal(){
+    override func steal(player:Player){
         playerData.gold += 10 //absorbing gives 10 hold
         self.removeAllActions()
         self.removeFromParent()

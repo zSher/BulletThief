@@ -16,4 +16,6 @@ import UIKit
     var numberOfStoredBullets: UInt {get set}
 
     var bulletEffects: [BulletEffectProtocol] {get set}
+    
+    func recalculateBulletEffects(data:PlayerData)
 }
