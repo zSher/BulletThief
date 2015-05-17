@@ -19,6 +19,7 @@ class PlayerData: NSObject, NSCoding {
     var bulletTexture = "pelletBullet"
     var bulletSet: BulletSet?
     var controlScheme: ControlSchemes = ControlSchemes.Tap
+    var purchasedBulletSetFlags: [String: UInt] = ["Basic Gun": 2, "DblX Gun":1] //array of flags, >1 means purchased
     
     var path = documentDirectory.stringByAppendingPathComponent("BulletThief.archive")
     
@@ -28,7 +29,7 @@ class PlayerData: NSObject, NSCoding {
         bulletSet = DefaultSet(data: self)
     }
     
-    convenience init(gold:UInt, farthestTraveled: UInt, controlScheme: ControlSchemes, speed: UInt, bulletDelay: UInt, bulletNum: UInt, bulletDamage: UInt, bulletSet: BulletSet?) {
+    convenience init(gold:UInt, farthestTraveled: UInt, controlScheme: ControlSchemes, speed: UInt, bulletDelay: UInt, bulletNum: UInt, bulletDamage: UInt, bulletSet: BulletSet?, bulletSetFlags:[String:UInt]?) {
         self.init()
         self.gold = gold
         self.farthestTraveled = farthestTraveled
@@ -38,6 +39,7 @@ class PlayerData: NSObject, NSCoding {
         self.bulletNumber = bulletNum
         self.bulletDamage = bulletDamage
         self.bulletSet = bulletSet ?? DefaultSet(data: self)
+        self.purchasedBulletSetFlags = bulletSetFlags ?? self.purchasedBulletSetFlags
     }
     
     //MARK: - NSCoder -
@@ -51,9 +53,10 @@ class PlayerData: NSObject, NSCoding {
         var bulletDelay = aDecoder.decodeObjectForKey("bDelay") as? UInt ?? 1
         var bulletDamage = aDecoder.decodeObjectForKey("bDamage") as? UInt ?? 1
         var bulletSet = aDecoder.decodeObjectForKey("bSet") as? BulletSet
+        var bulletSetFlags = aDecoder.decodeObjectForKey("bSetFlags") as? [String:UInt]
         //TODO: BulletEffects
         
-        self.init(gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!, speed: speed, bulletDelay: bulletDelay, bulletNum: bullets, bulletDamage: bulletDamage, bulletSet: bulletSet)
+        self.init(gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!, speed: speed, bulletDelay: bulletDelay, bulletNum: bullets, bulletDamage: bulletDamage, bulletSet: bulletSet, bulletSetFlags: bulletSetFlags)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -64,6 +67,7 @@ class PlayerData: NSObject, NSCoding {
         aCoder.encodeObject(bulletDelayLevel, forKey: "bDelay")
         aCoder.encodeObject(bulletNumber, forKey: "bullets")
         aCoder.encodeObject(bulletDamage, forKey: "bDamage")
+        aCoder.encodeObject(purchasedBulletSetFlags, forKey: "bSetFlags")
     }
     
     func savePlayerData(){

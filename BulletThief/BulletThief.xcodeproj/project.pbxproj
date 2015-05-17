@@ -46,6 +46,8 @@
 		D5D8F6BA1B08DC2000AC85A9 /* BulletSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */; };
 		D5D8F6BD1B08DCD800AC85A9 /* DefaultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */; };
 		D5D8F6C11B08EC2D00AC85A9 /* waveEnemy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6C01B08EC2D00AC85A9 /* waveEnemy.png */; };
+		D5D8F6C31B08EDC600AC85A9 /* CrossPathBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */; };
+		D5D8F6C51B08F86500AC85A9 /* DoubleCrossSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C41B08F86500AC85A9 /* DoubleCrossSet.swift */; };
 		D5E7D0331AF7267F00F67B66 /* TextureBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */; };
 		D5E7D0351AF72B0E00F67B66 /* FireDelayBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */; };
 		D5E7D0371AF72D0700F67B66 /* SpeedBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */; };
@@ -106,6 +108,8 @@
 		D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSet.swift; sourceTree = "<group>"; };
 		D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSet.swift; sourceTree = "<group>"; };
 		D5D8F6C01B08EC2D00AC85A9 /* waveEnemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waveEnemy.png; sourceTree = "<group>"; };
+		D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPathBulletEffect.swift; sourceTree = "<group>"; };
+		D5D8F6C41B08F86500AC85A9 /* DoubleCrossSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleCrossSet.swift; sourceTree = "<group>"; };
 		D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureBulletEffect.swift; sourceTree = "<group>"; };
 		D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDelayBulletEffect.swift; sourceTree = "<group>"; };
 		D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedBulletEffect.swift; sourceTree = "<group>"; };
@@ -165,6 +169,7 @@
 				D58D080B1AF8551A00E31640 /* LinePathBulletEffect.swift */,
 				D529F9031AF9A3170093D762 /* StandardSpawnBulletEffect.swift */,
 				D59D87821B083EEE006746F8 /* WavePathBulletEffect.swift */,
+				D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */,
 			);
 			name = Bullets;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 			children = (
 				D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */,
 				D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */,
+				D5D8F6C41B08F86500AC85A9 /* DoubleCrossSet.swift */,
 			);
 			name = "Bullet Sets";
 			sourceTree = "<group>";
@@ -409,11 +415,13 @@
 				D5E7D0371AF72D0700F67B66 /* SpeedBulletEffect.swift in Sources */,
 				D5D8F6BD1B08DCD800AC85A9 /* DefaultSet.swift in Sources */,
 				D5814CD01AF70CF800749B49 /* BulletEffectProtocol.swift in Sources */,
+				D5D8F6C31B08EDC600AC85A9 /* CrossPathBulletEffect.swift in Sources */,
 				D5404A291AEFE61800F46270 /* AppDelegate.swift in Sources */,
 				D5D34A021AFAF6EF001458FF /* Enemy.swift in Sources */,
 				D58D080C1AF8551A00E31640 /* LinePathBulletEffect.swift in Sources */,
 				D5404A5B1AEFE68B00F46270 /* Player.swift in Sources */,
 				D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */,
+				D5D8F6C51B08F86500AC85A9 /* DoubleCrossSet.swift in Sources */,
 				D5404A571AEFE68B00F46270 /* Gun.swift in Sources */,
 				D5404A561AEFE68B00F46270 /* Bullet.swift in Sources */,
 				D5D8F6BA1B08DC2000AC85A9 /* BulletSet.swift in Sources */,

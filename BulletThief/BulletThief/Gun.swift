@@ -11,7 +11,7 @@ import SpriteKit
 
 //Main class for all guns, different kinds of guns are created via bullet effects
 class Gun: SKNode {
-    var numberOfBulletsToFire = 1
+    var numberOfBulletsToFire: UInt = 1
     var bulletEffects: [BulletEffectProtocol] = []
     var bulletPool: [Bullet] = [] //the pool of bullets to be fired
     var fireDelay: CFTimeInterval = 0
@@ -26,11 +26,12 @@ class Gun: SKNode {
         super.init()
     }
     
-    convenience init(initialEffects:[BulletEffectProtocol], bulletCount:UInt, owner:SKSpriteNode) {
+    convenience init(initialEffects:[BulletEffectProtocol], numberOfBulletsToFire: UInt, bulletCount:UInt, owner:SKSpriteNode) {
         self.init()
         self.bulletPool = bulletManager.requestBullets(bulletCount)
         self.bulletEffects = initialEffects
         self.owner = owner
+        self.numberOfBulletsToFire = numberOfBulletsToFire
         calculateEffects()
     }
     

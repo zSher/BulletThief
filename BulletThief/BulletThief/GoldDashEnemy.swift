@@ -16,7 +16,7 @@ class GoldDashEnemy: Enemy {
     //MARK: - init -
     init(){
         var bulletEffects: [BulletEffectProtocol] = []
-        super.init(textureName: "goldDashEnemy", bulletEffects: bulletEffects, bulletCount: 0, speed: 28, name: "enemy")
+        super.init(textureName: "goldDashEnemy", bulletEffects: bulletEffects, numBullets: 0, bulletCount: 0, speed: 28, name: "enemy")
     }
 
     required init?(coder aDecoder: NSCoder) {

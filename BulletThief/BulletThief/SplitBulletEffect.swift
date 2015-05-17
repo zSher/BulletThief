@@ -13,7 +13,11 @@ import SpriteKit
 ///
 /// * doubles the current number of bullets shot
 /// * Adds a spawn point per bullet to create a line of shots based on the gun owner's size'
-class SplitBulletEffect: NSCoding, BulletEffectProtocol {
+class SplitBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
+    
+    override init() {
+        super.init()
+    }
     
     //MARK: - NSCoder -
     required init(coder aDecoder: NSCoder) {

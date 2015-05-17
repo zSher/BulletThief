@@ -12,6 +12,9 @@ import Foundation
 var upWavePath:UIBezierPath?
 var downWavePath:UIBezierPath?
 
+/// This bullet effect...
+///
+/// * Changes bullet paths to follow a wave pattern
 class WavePathBulletEffect: NSObject, NSCoding, BulletEffectProtocol {
     var chosenPath:UIBezierPath?
     

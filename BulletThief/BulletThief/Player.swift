@@ -42,10 +42,9 @@ import SpriteKit
                 
         var bulletEffects: [BulletEffectProtocol] = playerData.bulletSet!.bulletEffects
         
-        self.gun = Gun(initialEffects: bulletEffects, bulletCount: playerData.bulletSet!.numberOfStoredBullets, owner: self)
+        self.gun = Gun(initialEffects: bulletEffects, numberOfBulletsToFire: playerData.bulletNumber, bulletCount: playerData.bulletSet!.numberOfStoredBullets, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.PlayerBullet, contactBit: CollisionCategories.Enemy, collisionBit: CollisionCategories.None)
         
-        self.gun.numberOfBulletsToFire = Int(playerData.bulletNumber)
         //TODO: Bullet damage
 
     }

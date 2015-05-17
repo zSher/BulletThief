@@ -14,7 +14,7 @@ class WaveEnemy: Enemy {
     //MARK: - init -
     init(){
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 10), WavePathBulletEffect(dir: Directions.Down), StandardSpawnBulletEffect()]
-        super.init(textureName: "waveEnemy", bulletEffects: bulletEffects, bulletCount: 10, speed: 8, name: "enemy")
+        super.init(textureName: "waveEnemy", bulletEffects: bulletEffects, numBullets: 1, bulletCount: 10, speed: 8, name: "enemy")
     }
 
     required init?(coder aDecoder: NSCoder) {

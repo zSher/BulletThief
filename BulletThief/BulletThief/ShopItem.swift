@@ -16,24 +16,39 @@ class ShopItem: NSObject {
     var baseCost:UInt = 0
     var costChange:UInt = 0
     var action: (data:PlayerData) -> () //callback for what this item should do when purchased
+    var equippable = false
+    
     override init() {
         action = {(data) in }
         super.init()
     }
     
-    convenience init(name:String, detail:String, cost:UInt, costChange:UInt, costLevel:UInt,  action: (data:PlayerData) -> ()) {
+    convenience init(name:String, detail:String, cost:UInt, costChange:UInt, costLevel:UInt,  action: (data:PlayerData) -> (), equippable: Bool = false) {
         self.init()
         self.itemName = name
         self.detailText = detail
         self.baseCost = cost
         self.costChange = costChange
-        calculateCost(costLevel)
+        if equippable {
+            calculateEquipmentCost(playerData.purchasedBulletSetFlags[itemName]!)
+        } else {
+            calculateCost(costLevel)
+        }
         self.action = action
+        self.equippable = equippable
 
     }
     
     func calculateCost(costLevel: UInt){
         self.cost = baseCost + costChange * (costLevel - 1)
+    }
+    
+    func calculateEquipmentCost(costLevel: UInt){
+        if costLevel == 1  {
+            self.cost = baseCost + costChange * (costLevel - 1)
+        } else {
+            cost = 0
+        }
     }
     
     func applyItemEffect(data:PlayerData) {
@@ -63,6 +78,15 @@ class ItemEffectLibrary {
     //increase number of shots per fire
     func increaseBulletNumber(data:PlayerData){
         data.bulletNumber += 1
+    }
+    
+    func equipDefaultSet(data:PlayerData){
+        data.bulletSet = DefaultSet(data: data)
+    }
+    
+    func equipDoubleCrossSet(data:PlayerData){
+        data.bulletSet = DoubleCrossSet(data: data)
+        println(data.bulletSet!.bulletEffects)
     }
 }
 var itemEffectLibrary = ItemEffectLibrary()

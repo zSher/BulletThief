@@ -17,15 +17,15 @@ class Enemy: SKSpriteNode {
     //MARK: - Init -
     convenience override init(){
         var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 8), LinePathBulletEffect(direction: Directions.Down), StandardSpawnBulletEffect()]
-        self.init(textureName: "enemy", bulletEffects: bulletEffects, bulletCount: 20, speed: 5, name: "enemy")
+        self.init(textureName: "enemy", bulletEffects: bulletEffects, numBullets: 1, bulletCount: 20, speed: 5, name: "enemy")
     }
     
-    init(textureName: String, bulletEffects: [BulletEffectProtocol], bulletCount: UInt, speed:CGFloat, name:String) {
+    init(textureName: String, bulletEffects: [BulletEffectProtocol], numBullets:UInt, bulletCount: UInt, speed:CGFloat, name:String) {
         var texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         
 
-        self.gun = Gun(initialEffects: bulletEffects, bulletCount: bulletCount, owner: self)
+        self.gun = Gun(initialEffects: bulletEffects, numberOfBulletsToFire: numBullets, bulletCount: bulletCount, owner: self)
         self.gun.setPhysicsBody(CollisionCategories.EnemyBullet, contactBit: CollisionCategories.Player, collisionBit: CollisionCategories.None)
         self.speed = speed
         self.name = name

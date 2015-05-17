@@ -15,6 +15,7 @@ class ShopScene: SKScene {
     var table:UITableView!
     var currentShopIndex = 0
     var shopItems:[ShopItem] = []
+    var shopDetailLbl: SKLabelNode!
     
     override func didMoveToView(view: SKView) {
         self.backgroundColor = UIColor.blackColor()
@@ -24,13 +25,16 @@ class ShopScene: SKScene {
             ShopItem(name: "Thrusters +", detail: "Movement speed +10%", cost: 50, costChange: 50, costLevel: playerData.speedLevel, action: itemEffectLibrary.increaseMovementSpeed),
             ShopItem(name: "Coolant +", detail: "Fire rate +10%", cost: 100, costChange: 100, costLevel: playerData.bulletDelayLevel, action: itemEffectLibrary.increaseFireRate),
             ShopItem(name: "Caliber +", detail: "Bullet Damage +1", cost: 200, costChange: 200, costLevel: playerData.bulletDamage, action: itemEffectLibrary.increaseBulletDamage),
-            ShopItem(name: "Barrel +", detail: "Bullets fird 1+", cost: 300, costChange: 300, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber),
-            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
-            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
-            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
-            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
-            ShopItem(name: "SplitShot", detail: "Double bullet fun", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed)
+            ShopItem(name: "Barrel +", detail: "Bullets fired 1+", cost: 300, costChange: 300, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber),
+            ShopItem(name: "Basic Gun", detail: "Good Ol' gun", cost: 0, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDefaultSet, equippable: true),
+            ShopItem(name: "DblX Gun", detail: "Split Cross", cost: 1000, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDoubleCrossSet, equippable: true),
+            ShopItem(name: "Not Here", detail: "Eh", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "Propane", detail: "and propane accessories", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "Nope", detail: ".avi", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed)
         ]
+        
+        shopDetailLbl = childNodeWithName("shopLbl1") as SKLabelNode
+        shopDetailLbl.text = "What would you like"
         
         updateShopDisplay()
     }
@@ -42,6 +46,7 @@ class ShopScene: SKScene {
         shopItems[1].calculateCost(playerData.bulletDelayLevel)
         shopItems[2].calculateCost(playerData.bulletDamage)
         shopItems[3].calculateCost(playerData.bulletNumber)
+        shopItems[5].calculateEquipmentCost(playerData.purchasedBulletSetFlags[shopItems[5].itemName]!)
         //TODO: other items
     }
     
@@ -60,7 +65,7 @@ class ShopScene: SKScene {
                 var item = shopItems[itemNumber]
                 nameLbl.text = item.itemName
                 detailLbl.text = item.detailText
-                costLbl.text = "Cost: \(item.cost)"
+                costLbl.text =  (item.equippable && item.cost == 0) ? "Equip" : "Cost: \(item.cost)"
             } else {
                 nameLbl.text = "Not available"
                 detailLbl.text = "Not available"
@@ -87,11 +92,23 @@ class ShopScene: SKScene {
                     if playerData.gold >= item.cost{
                         item.applyItemEffect(playerData)
                         playerData.gold -= item.cost
+                        
+                        //Player now owns this bulletset, don't need to buy anymore
+                        if item.equippable && playerData.purchasedBulletSetFlags[item.itemName] == 1{
+                            playerData.purchasedBulletSetFlags[item.itemName] = 2 //Purchased
+                        }
+                        
+                        if !item.equippable{
+                            displayThankYouMessage("Thank you for your purchase")
+                        } else {
+                            displayThankYouMessage("Your gun is equipped, good luck")
+                        }
+                        
                         updateCosts()
                         playerData.savePlayerData()
                         self.updateShopDisplay()
                     } else {
-                        //TODO: display alert, not enough gold
+                        displayErrorMessage()
                     }
                 }
             } else if touchedNode.name == "start" {
@@ -116,6 +133,25 @@ class ShopScene: SKScene {
             }
             
         }
+    }
+    
+    //Show error that pulses size and changes color to red
+    func displayErrorMessage(){
+        shopDetailLbl.text = "You don't have enough Gold!"
+        var growAction = SKAction.scaleTo(1.25, duration: 0.25)
+        var shrinkAction = SKAction.scaleTo(1, duration: 0.25)
+        var sequenceAction = SKAction.sequence([growAction, shrinkAction])
+        shopDetailLbl.fontColor = UIColor.redColor()
+        shopDetailLbl.runAction(sequenceAction)
+    }
+    
+    func displayThankYouMessage(msg: String){
+        shopDetailLbl.text = msg
+        var growAction = SKAction.scaleTo(1.25, duration: 0.25)
+        var shrinkAction = SKAction.scaleTo(1, duration: 0.25)
+        var sequenceAction = SKAction.sequence([growAction, shrinkAction])
+        shopDetailLbl.fontColor = UIColor.greenColor()
+        shopDetailLbl.runAction(sequenceAction)
     }
     
     deinit {
