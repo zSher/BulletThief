@@ -19,7 +19,7 @@ class PlayerData: NSObject, NSCoding {
     var bulletTexture = "pelletBullet"
     var bulletSet: BulletSet?
     var controlScheme: ControlSchemes = ControlSchemes.Tap
-    var purchasedBulletSetFlags: [String: UInt] = ["Basic Gun": 2, "DblX Gun":1] //array of flags, >1 means purchased
+    var purchasedBulletSetFlags: [String: UInt] = ["Basic Gun": 2, "DblX Gun":1, "Hyper Gun": 1] //array of flags, >1 means purchased
     
     var path = documentDirectory.stringByAppendingPathComponent("BulletThief.archive")
     
@@ -54,6 +54,7 @@ class PlayerData: NSObject, NSCoding {
         var bulletDamage = aDecoder.decodeObjectForKey("bDamage") as? UInt ?? 1
         var bulletSet = aDecoder.decodeObjectForKey("bSet") as? BulletSet
         var bulletSetFlags = aDecoder.decodeObjectForKey("bSetFlags") as? [String:UInt]
+
         //TODO: BulletEffects
         
         self.init(gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!, speed: speed, bulletDelay: bulletDelay, bulletNum: bullets, bulletDamage: bulletDamage, bulletSet: bulletSet, bulletSetFlags: bulletSetFlags)

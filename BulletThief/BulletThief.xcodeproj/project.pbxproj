@@ -45,9 +45,11 @@
 		D5D34A0B1AFB985F001458FF /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5D34A0A1AFB985F001458FF /* ShopScene.sks */; };
 		D5D8F6BA1B08DC2000AC85A9 /* BulletSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */; };
 		D5D8F6BD1B08DCD800AC85A9 /* DefaultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */; };
-		D5D8F6C11B08EC2D00AC85A9 /* waveEnemy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6C01B08EC2D00AC85A9 /* waveEnemy.png */; };
 		D5D8F6C31B08EDC600AC85A9 /* CrossPathBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */; };
 		D5D8F6C51B08F86500AC85A9 /* DoubleCrossSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C41B08F86500AC85A9 /* DoubleCrossSet.swift */; };
+		D5D8F6C71B0946EE00AC85A9 /* HyperRapidFireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C61B0946EE00AC85A9 /* HyperRapidFireSet.swift */; };
+		D5D8F6CD1B0A243800AC85A9 /* waveEnemy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6CC1B0A243800AC85A9 /* waveEnemy.png */; };
+		D5D8F6CF1B0A617300AC85A9 /* hyperBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6CE1B0A617300AC85A9 /* hyperBullet.png */; };
 		D5E7D0331AF7267F00F67B66 /* TextureBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */; };
 		D5E7D0351AF72B0E00F67B66 /* FireDelayBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */; };
 		D5E7D0371AF72D0700F67B66 /* SpeedBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */; };
@@ -107,9 +109,11 @@
 		D5D34A0A1AFB985F001458FF /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShopScene.sks; sourceTree = "<group>"; };
 		D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSet.swift; sourceTree = "<group>"; };
 		D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSet.swift; sourceTree = "<group>"; };
-		D5D8F6C01B08EC2D00AC85A9 /* waveEnemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waveEnemy.png; sourceTree = "<group>"; };
 		D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPathBulletEffect.swift; sourceTree = "<group>"; };
 		D5D8F6C41B08F86500AC85A9 /* DoubleCrossSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoubleCrossSet.swift; sourceTree = "<group>"; };
+		D5D8F6C61B0946EE00AC85A9 /* HyperRapidFireSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperRapidFireSet.swift; sourceTree = "<group>"; };
+		D5D8F6CC1B0A243800AC85A9 /* waveEnemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waveEnemy.png; sourceTree = "<group>"; };
+		D5D8F6CE1B0A617300AC85A9 /* hyperBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hyperBullet.png; sourceTree = "<group>"; };
 		D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureBulletEffect.swift; sourceTree = "<group>"; };
 		D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDelayBulletEffect.swift; sourceTree = "<group>"; };
 		D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedBulletEffect.swift; sourceTree = "<group>"; };
@@ -241,7 +245,8 @@
 		D5404A601AEFE69400F46270 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D5D8F6C01B08EC2D00AC85A9 /* waveEnemy.png */,
+				D5D8F6CE1B0A617300AC85A9 /* hyperBullet.png */,
+				D5D8F6CC1B0A243800AC85A9 /* waveEnemy.png */,
 				D5578FA31B0449FD00D5E586 /* goldDashEnemy.png */,
 				D5D34A081AFAFDDB001458FF /* lineBullet.png */,
 				D5D34A061AFAFA1C001458FF /* enemy.png */,
@@ -281,6 +286,7 @@
 				D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */,
 				D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */,
 				D5D8F6C41B08F86500AC85A9 /* DoubleCrossSet.swift */,
+				D5D8F6C61B0946EE00AC85A9 /* HyperRapidFireSet.swift */,
 			);
 			name = "Bullet Sets";
 			sourceTree = "<group>";
@@ -366,9 +372,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5404A371AEFE61800F46270 /* LaunchScreen.xib in Resources */,
+				D5D8F6CD1B0A243800AC85A9 /* waveEnemy.png in Resources */,
+				D5D8F6CF1B0A617300AC85A9 /* hyperBullet.png in Resources */,
 				D5D34A091AFAFDDB001458FF /* lineBullet.png in Resources */,
 				D5C79BC71AF71E07004D2E0F /* pelletBullet.png in Resources */,
-				D5D8F6C11B08EC2D00AC85A9 /* waveEnemy.png in Resources */,
 				D5D34A071AFAFA1C001458FF /* enemy.png in Resources */,
 				D5578FA41B0449FD00D5E586 /* goldDashEnemy.png in Resources */,
 				D5404A5A1AEFE68B00F46270 /* player.png in Resources */,
@@ -421,6 +428,7 @@
 				D58D080C1AF8551A00E31640 /* LinePathBulletEffect.swift in Sources */,
 				D5404A5B1AEFE68B00F46270 /* Player.swift in Sources */,
 				D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */,
+				D5D8F6C71B0946EE00AC85A9 /* HyperRapidFireSet.swift in Sources */,
 				D5D8F6C51B08F86500AC85A9 /* DoubleCrossSet.swift in Sources */,
 				D5404A571AEFE68B00F46270 /* Gun.swift in Sources */,
 				D5404A561AEFE68B00F46270 /* Bullet.swift in Sources */,

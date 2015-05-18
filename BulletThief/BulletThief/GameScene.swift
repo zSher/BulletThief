@@ -60,14 +60,15 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             let touchLocation = touch.locationInNode(self)
             let touchedNode = self.nodeAtPoint(touchLocation)
             
-            if touchedNode == self {
-                tapController?.touchBegan(touchLocation, touch: touch as UITouch)
-            } else if touchedNode.name == "enemy" {
+            if touchedNode.name == "enemy" {
                 var enemy = touchedNode as Enemy
                 if enemy.weakened && player.distanceBetween(enemy) < 25.0 {
                     enemy.steal(player)
                 }
             }
+            
+            tapController?.touchBegan(touchLocation, touch: touch as UITouch)
+
         }
     }
     

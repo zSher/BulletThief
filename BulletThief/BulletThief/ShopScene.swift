@@ -28,7 +28,7 @@ class ShopScene: SKScene {
             ShopItem(name: "Barrel +", detail: "Bullets fired 1+", cost: 300, costChange: 300, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber),
             ShopItem(name: "Basic Gun", detail: "Good Ol' gun", cost: 0, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDefaultSet, equippable: true),
             ShopItem(name: "DblX Gun", detail: "Split Cross", cost: 1000, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDoubleCrossSet, equippable: true),
-            ShopItem(name: "Not Here", detail: "Eh", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "Hyper Gun", detail: "You want more bullets?", cost: 10000, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipHyperRapidSet, equippable: true),
             ShopItem(name: "Propane", detail: "and propane accessories", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
             ShopItem(name: "Nope", detail: ".avi", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed)
         ]
@@ -47,6 +47,7 @@ class ShopScene: SKScene {
         shopItems[2].calculateCost(playerData.bulletDamage)
         shopItems[3].calculateCost(playerData.bulletNumber)
         shopItems[5].calculateEquipmentCost(playerData.purchasedBulletSetFlags[shopItems[5].itemName]!)
+        shopItems[6].calculateEquipmentCost(playerData.purchasedBulletSetFlags[shopItems[6].itemName]!)
         //TODO: other items
     }
     

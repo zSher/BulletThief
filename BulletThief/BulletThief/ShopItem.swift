@@ -88,5 +88,9 @@ class ItemEffectLibrary {
         data.bulletSet = DoubleCrossSet(data: data)
         println(data.bulletSet!.bulletEffects)
     }
+    
+    func equipHyperRapidSet(data:PlayerData){
+        data.bulletSet = HyperRapidFireSet(data:data)
+    }
 }
 var itemEffectLibrary = ItemEffectLibrary()
