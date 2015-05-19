@@ -117,6 +117,8 @@ class AIManager: NSObject {
                 self.spawnEnemyAtRandomLocation(GoldDashEnemy())
             } else if chance >= 0.10 && chance < 0.3 {
                 self.spawnEnemyAtRandomLocation(WaveEnemy())
+            } else if chance >= 0.3 && chance < 0.7 {
+                self.spawnEnemyAtRandomLocation(SplitShotEnemy())
             } else {
                 self.spawnEnemyAtRandomLocation(Enemy())
             }
@@ -137,6 +139,8 @@ class AIManager: NSObject {
             enemyType = GoldDashEnemy()
         } else if chance >= 0.10 && chance < 0.3 {
             enemyType = WaveEnemy()
+        } else if chance >= 0.3 && chance < 0.7 {
+            enemyType = SplitShotEnemy()
         } else {
             enemyType = Enemy()
         }

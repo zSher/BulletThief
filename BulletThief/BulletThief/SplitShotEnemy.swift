@@ -1,33 +1,33 @@
 //
-//  WaveEnemy.swift
+//  SplitShotEnemy.swift
 //  BulletThief
 //
-//  Created by Zachary on 5/16/15.
+//  Created by Zachary on 5/18/15.
 //  Copyright (c) 2015 Zachary. All rights reserved.
 //
 
 import UIKit
 import SpriteKit
 
-class WaveEnemy: Enemy {
+class SplitShotEnemy: Enemy {
     
     //MARK: - init -
-    init(){
-        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 3.5), SpeedBulletEffect(speed: 10), WavePathBulletEffect(dir: Directions.Down), StandardSpawnBulletEffect()]
-        super.init(textureName: "waveEnemy", bulletEffects: bulletEffects, numBullets: 1, bulletCount: 10, speed: 8, name: "enemy")
+    init(){ 
+        var bulletEffects: [BulletEffectProtocol] = [TextureBulletEffect(textureName: "lineBullet"), FireDelayBulletEffect(delay: 4), SpeedBulletEffect(speed: 9), LinePathBulletEffect(direction: .Down), SplitBulletEffect()]
+        super.init(textureName: "splitShotEnemy", bulletEffects: bulletEffects, numBullets: 1, bulletCount: 30, speed: 10, name: "enemy")
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init not implemented")
     }
-
+    
     //MARK: - Methods -
     
-    //Always become disabled when killed
+    //Become disabled when killed
     override func willDie() {
         //Chance to disable
         var chance = randomRange(0, 1)
-        if chance < 0.2 {
+        if chance < 0.1 {
             self.speed = 6
             self.weakened = true
             self.physicsBody?.categoryBitMask = CollisionCategories.None //become unhittable
@@ -38,11 +38,11 @@ class WaveEnemy: Enemy {
         } else {
             super.willDie()
         }
-
+        
     }
     
     override func steal(player:Player){
-        player.gun!.addEffect(WavePathBulletEffect(dir: Directions.Up))
+        player.gun!.addEffect(SplitBulletEffect())
         self.removeAllActions()
         self.removeFromParent()
     }
@@ -54,4 +54,5 @@ class WaveEnemy: Enemy {
         scene.addChild(self)
         self.runAction(onScreenActionGrp)
     }
+
 }

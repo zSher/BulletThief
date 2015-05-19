@@ -13,7 +13,7 @@ import UIKit
 class HyperRapidFireSet: NSObject, BulletSet, NSCoding {
     var baseFireRate:CGFloat = 0.10
     var bulletSpeed: CGFloat = 15
-    var numberOfStoredBullets: UInt = 300
+    var numberOfStoredBullets: UInt = 1200
     
     var bulletEffects: [BulletEffectProtocol] = []
     

@@ -70,6 +70,11 @@ class Gun: SKNode {
             //for each bullet we fire per fire
             for i in 0..<self.numberOfBulletsToFire {
                 var bullet = bulletPool.removeAtIndex(0) //Pull bullet from front
+                if bullet.scene != nil {
+                    bullet.removeAllActions()
+                    bullet.removeFromParent()
+                    println("caught failed to remove bullet")
+                }
                 
                 //offset slightly if we shoot +1 bullet every fire
                 var spawnOffsetX = randomRange(-bulletOffset, bulletOffset)
@@ -84,10 +89,7 @@ class Gun: SKNode {
                 }
                 var actionGrp = SKAction.sequence([followPath, removeAction])
                 
-                if bullet.scene != nil {
-                    bullet.removeFromParent()
-                    println("caught failed to remove bullet")
-                }
+
                 scene.addChild(bullet)
                 bullet.runAction(actionGrp)
                 
@@ -115,6 +117,7 @@ class Gun: SKNode {
     }
     
     func returnToPool(bullet:Bullet){
+        bullet.removeAllActions()
         bullet.removeFromParent()
         self.bulletPool.append(bullet)
     }

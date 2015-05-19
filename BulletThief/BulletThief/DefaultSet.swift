@@ -13,7 +13,7 @@ import UIKit
 class DefaultSet: NSObject, BulletSet, NSCoding {
     var baseFireRate:CGFloat = 2
     var bulletSpeed: CGFloat = 8
-    var numberOfStoredBullets: UInt = 300
+    var numberOfStoredBullets: UInt = 700
 
     var bulletEffects: [BulletEffectProtocol] = []
     

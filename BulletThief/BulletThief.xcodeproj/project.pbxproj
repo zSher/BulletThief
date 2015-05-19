@@ -44,6 +44,8 @@
 		D5D34A091AFAFDDB001458FF /* lineBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D34A081AFAFDDB001458FF /* lineBullet.png */; };
 		D5D34A0B1AFB985F001458FF /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5D34A0A1AFB985F001458FF /* ShopScene.sks */; };
 		D5D8B12B1B0AAB60001A89E1 /* launchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8B12A1B0AAB60001A89E1 /* launchImage.png */; };
+		D5D8B12D1B0ADB7E001A89E1 /* SplitShotEnemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8B12C1B0ADB7E001A89E1 /* SplitShotEnemy.swift */; };
+		D5D8B12F1B0ADCC7001A89E1 /* splitShotEnemy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8B12E1B0ADCC7001A89E1 /* splitShotEnemy.png */; };
 		D5D8F6BA1B08DC2000AC85A9 /* BulletSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */; };
 		D5D8F6BD1B08DCD800AC85A9 /* DefaultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */; };
 		D5D8F6C31B08EDC600AC85A9 /* CrossPathBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */; };
@@ -113,6 +115,8 @@
 		D5D34A081AFAFDDB001458FF /* lineBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineBullet.png; sourceTree = "<group>"; };
 		D5D34A0A1AFB985F001458FF /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShopScene.sks; sourceTree = "<group>"; };
 		D5D8B12A1B0AAB60001A89E1 /* launchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImage.png; sourceTree = "<group>"; };
+		D5D8B12C1B0ADB7E001A89E1 /* SplitShotEnemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitShotEnemy.swift; sourceTree = "<group>"; };
+		D5D8B12E1B0ADCC7001A89E1 /* splitShotEnemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splitShotEnemy.png; sourceTree = "<group>"; };
 		D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSet.swift; sourceTree = "<group>"; };
 		D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSet.swift; sourceTree = "<group>"; };
 		D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPathBulletEffect.swift; sourceTree = "<group>"; };
@@ -256,6 +260,7 @@
 		D5404A601AEFE69400F46270 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D5D8B12E1B0ADCC7001A89E1 /* splitShotEnemy.png */,
 				D5D8F6D61B0A717400AC85A9 /* goldItem.png */,
 				D5D8F6D41B0A664400AC85A9 /* StartButtonTexture.png */,
 				D5D8F6D21B0A656C00AC85A9 /* BuyButtonTexture.png */,
@@ -291,6 +296,7 @@
 				D5D34A011AFAF6EF001458FF /* Enemy.swift */,
 				D59D87841B084351006746F8 /* WaveEnemy.swift */,
 				D5578FA11B0446EC00D5E586 /* GoldDashEnemy.swift */,
+				D5D8B12C1B0ADB7E001A89E1 /* SplitShotEnemy.swift */,
 			);
 			name = Actors;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5D8B12B1B0AAB60001A89E1 /* launchImage.png in Resources */,
+				D5D8B12F1B0ADCC7001A89E1 /* splitShotEnemy.png in Resources */,
 				D5404A371AEFE61800F46270 /* LaunchScreen.xib in Resources */,
 				D5D8F6CD1B0A243800AC85A9 /* waveEnemy.png in Resources */,
 				D5D8F6CF1B0A617300AC85A9 /* hyperBullet.png in Resources */,
@@ -446,6 +453,7 @@
 				D5404A291AEFE61800F46270 /* AppDelegate.swift in Sources */,
 				D5D34A021AFAF6EF001458FF /* Enemy.swift in Sources */,
 				D58D080C1AF8551A00E31640 /* LinePathBulletEffect.swift in Sources */,
+				D5D8B12D1B0ADB7E001A89E1 /* SplitShotEnemy.swift in Sources */,
 				D5404A5B1AEFE68B00F46270 /* Player.swift in Sources */,
 				D5404A5F1AEFE68B00F46270 /* Utilities.swift in Sources */,
 				D5D8F6C71B0946EE00AC85A9 /* HyperRapidFireSet.swift in Sources */,

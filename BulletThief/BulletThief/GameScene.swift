@@ -67,7 +67,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             
             if touchedNode.name == "enemy" {
                 var enemy = touchedNode as Enemy
-                if enemy.weakened && player.distanceBetween(enemy) < 25.0 {
+                if enemy.weakened && player.distanceBetween(enemy) < 50 {
                     enemy.steal(player)
                 }
             }
