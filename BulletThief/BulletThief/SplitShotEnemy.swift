@@ -46,6 +46,7 @@ class SplitShotEnemy: Enemy {
         player.gun!.addEffect(SplitBulletEffect())
         self.removeAllActions()
         self.removeFromParent()
+        bulletManager.returnBullets(gun.bulletPool)
     }
     
     override func addToScene(scene: SKScene) {

@@ -68,6 +68,7 @@ class Enemy: SKSpriteNode {
     func willDie(){
         self.removeAllActions()
         self.removeFromParent()
+        bulletManager.returnBullets(gun.bulletPool)
     }
     
     //separate add function to add all components before being put onto screen

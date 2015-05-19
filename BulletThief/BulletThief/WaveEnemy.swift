@@ -45,6 +45,8 @@ class WaveEnemy: Enemy {
         player.gun!.addEffect(WavePathBulletEffect(dir: Directions.Up))
         self.removeAllActions()
         self.removeFromParent()
+        bulletManager.returnBullets(gun.bulletPool)
+
     }
     
     override func addToScene(scene: SKScene) {

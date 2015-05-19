@@ -42,6 +42,7 @@ class GoldDashEnemy: Enemy {
         playerData.gold += 10 //absorbing gives 10 hold
         self.removeAllActions()
         self.removeFromParent()
+        bulletManager.returnBullets(gun.bulletPool)
     }
     
     override func addToScene(scene: SKScene) {
