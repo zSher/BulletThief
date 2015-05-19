@@ -26,6 +26,7 @@ class Gun: SKNode {
         super.init()
     }
     
+    //Init with properties
     convenience init(initialEffects:[BulletEffectProtocol], numberOfBulletsToFire: UInt, bulletCount:UInt, owner:SKSpriteNode) {
         self.init()
         self.bulletPool = bulletManager.requestBullets(bulletCount)
@@ -56,6 +57,7 @@ class Gun: SKNode {
         }
     }
     
+    //Apply the bullet effect to all bullets and add itto the effects array
     func addEffect(bEffect: BulletEffectProtocol){
         bEffect.applyEffect(self)
         self.bulletEffects.append(bEffect)
@@ -116,6 +118,7 @@ class Gun: SKNode {
         }
     }
     
+    //When bullet is removed from screen return it to the pool to be used again
     func returnToPool(bullet:Bullet){
         bullet.removeAllActions()
         bullet.removeFromParent()

@@ -22,11 +22,14 @@ class AIManager: NSObject {
     var state:AIState = AIState.ReadyToSpawn
     var difficulty:CGFloat = 0
     var goldNode:SKSpriteNode!
+    var difficultyFlag: (low:CGFloat, high:CGFloat) = (25, 100)
+    let STRAFE_CHANCE: CGFloat = 0.75
     
     //Timing variables
     var timeSinceSpawn:CFTimeInterval = 0
     var goldSpawnCoolDownMax = 10
     var goldCoolDown:CFTimeInterval = 0
+    let GOLD_CD_RANGE:CGFloat = 3
     
     //MARK: - Init -
     init(scene:GameScene){
@@ -55,15 +58,16 @@ class AIManager: NSObject {
         }
     }
     
+    //Set the cooldown of gold spawn to a
     func setGoldCoolDown(){
-        goldCoolDown = CFTimeInterval(randomRange(CGFloat(goldSpawnCoolDownMax) - 3, CGFloat(goldSpawnCoolDownMax) + 3))
+        goldCoolDown = CFTimeInterval(randomRange(CGFloat(goldSpawnCoolDownMax) - GOLD_CD_RANGE, CGFloat(goldSpawnCoolDownMax) + GOLD_CD_RANGE))
     }
     
     //MARK: - Spawn Enemies Methods -
     func spawnEnemies(){
         if self.state == AIState.ReadyToSpawn {
             var chance = randomRange(0, 1)
-            if chance < 0.75 {
+            if chance < STRAFE_CHANCE {
                 self.state = .StrafeSpawn
             } else {
                 self.state = .Spawning
@@ -71,22 +75,22 @@ class AIManager: NSObject {
         } else if self.state == .StrafeSpawn {
            //Spawn quickly on a increasing x, or decreasing x
             var numberToSpawn = 0
-            if difficulty < 25 {
+            if difficulty < difficultyFlag.low {
                 numberToSpawn = 3
-            } else if difficulty >= 25 && difficulty < 100 {
+            } else if difficulty >= difficultyFlag.low && difficulty < difficultyFlag.high {
                 numberToSpawn = 4
             } else {
-                numberToSpawn = 5 + Int((difficulty - 100) / 100) //add 1 every 100 difficulty
+                numberToSpawn = 5 + Int((difficulty - difficultyFlag.high) / difficultyFlag.high) //add 1 every 100 difficulty
             }
             strafeSpawn(numberToSpawn)
             self.state = .Idle
         } else if self.state == .Spawning {
             //Basic random Spawn
-            if difficulty < 25 {
+            if difficulty < difficultyFlag.low {
                 println("easy")
                 easySpawn()
                 self.state = .Idle
-            } else if difficulty >= 25 && difficulty < 100 {
+            } else if difficulty >= difficultyFlag.low && difficulty < difficultyFlag.high {
                 println("medium")
                 mediumSpawn()
                 self.state = .Idle
@@ -112,6 +116,7 @@ class AIManager: NSObject {
         scene.runAction(SKAction.sequence([spawner, resetBlock]))
     }
     
+    //Spawns enemies faster with higher chance of harder enemies
     func mediumSpawn(){
         var spawnDelay = SKAction.waitForDuration(3, withRange: 2.5)
         var spawnBlock = SKAction.runBlock(){
@@ -133,6 +138,7 @@ class AIManager: NSObject {
         scene.runAction(SKAction.sequence([spawner, resetBlock]))
     }
     
+    //Spawns enemies even faster then medium and at even faster speeds
     func hardSpawn(){
         var spawnDelay = SKAction.waitForDuration(1, withRange: 0.75)
         var spawnBlock = SKAction.runBlock(){
@@ -201,15 +207,17 @@ class AIManager: NSObject {
         scene.runAction(strafeFullAction)
     }
     
-    //MARK: - Helper Functions -
+    //MARK: - Helper Functions-
     func updateDifficulty(){
         difficulty = scene.distance //TODO: be more smart about difficulty
     }
     
+    //Reset state to readyToSpawn
     func resetToReady(){
         self.state = .ReadyToSpawn
     }
     
+    //Helper to spawn gold at random location
     func spawnGoldAtRandomLocation() {
         
         var gold = goldNode.copy() as SKSpriteNode
@@ -241,6 +249,7 @@ class AIManager: NSObject {
         
     }
     
+    //Helper to create line paths for spawning
     func createStraightLinePath(offset:CGSize = CGSizeZero) -> UIBezierPath {
         //create straight line movement
         var path = UIBezierPath()
@@ -250,6 +259,7 @@ class AIManager: NSObject {
         return path
     }
     
+    //Helper to create random spawn points above top of screen
     func createRandomTopPoint(offset: CGSize = CGSizeZero) -> CGPoint {
         var xRand = randomRange(0, scene.size.width)
         var yPos = scene.size.height + offset.height

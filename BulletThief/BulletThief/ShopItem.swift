@@ -23,6 +23,7 @@ class ShopItem: NSObject {
         super.init()
     }
     
+    //init with properties
     convenience init(name:String, detail:String, cost:UInt, costChange:UInt, costLevel:UInt,  action: (data:PlayerData) -> (), equippable: Bool = false) {
         self.init()
         self.itemName = name
@@ -39,10 +40,12 @@ class ShopItem: NSObject {
 
     }
     
+    //Recalculate the cost of the item based on the player's current level of this item
     func calculateCost(costLevel: UInt){
         self.cost = baseCost + costChange * (costLevel - 1)
     }
     
+    //Recalculate cost of equipment, if it is bought already the cost is 0
     func calculateEquipmentCost(costLevel: UInt){
         if costLevel == 1  {
             self.cost = baseCost + costChange * (costLevel - 1)
@@ -51,6 +54,7 @@ class ShopItem: NSObject {
         }
     }
     
+    //Apply the closure
     func applyItemEffect(data:PlayerData) {
         self.action(data: data) //function pointers, cooool
     }
@@ -80,17 +84,20 @@ class ItemEffectLibrary {
         data.bulletNumber += 1
     }
     
+    //Equip default set
     func equipDefaultSet(data:PlayerData){
         data.bulletSet = DefaultSet(data: data)
     }
     
+    //Equip double cross set
     func equipDoubleCrossSet(data:PlayerData){
         data.bulletSet = DoubleCrossSet(data: data)
         println(data.bulletSet!.bulletEffects)
     }
     
+    //Equip hyper rapid set
     func equipHyperRapidSet(data:PlayerData){
         data.bulletSet = HyperRapidFireSet(data:data)
     }
 }
-var itemEffectLibrary = ItemEffectLibrary()
+var itemEffectLibrary = ItemEffectLibrary() //SINGLETON

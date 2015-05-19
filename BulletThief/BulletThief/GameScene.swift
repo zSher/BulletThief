@@ -53,6 +53,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "pause:", name: "pauseNotification", object: nil)
     }
     
+    //Toggle for pausing and unpausing
     func pause(sender: AnyObject) {
         self.paused = !paused
     }
@@ -117,7 +118,6 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             updateControls(deltaTime)
             player.update(deltaTime)
             
-            //TODO: genericify
             enumerateChildNodesWithName("enemy") {node, stop in
                 var enemy = node as Enemy
                 enemy.update(deltaTime)
@@ -128,7 +128,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
 
     }
 
-    //ugly but oh well.
+    //Update the control interface
     func updateControls(deltaTime:CFTimeInterval){
         if playerData.controlScheme != ControlSchemes.Tap {
             hudController?.update(deltaTime)
@@ -156,7 +156,8 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             player.gun.returnToPool(secondBody.node! as Bullet)
         } else if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) && (secondBody.categoryBitMask & CollisionCategories.EnemyBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
             // EnemyBullet vs Player
-            //TODO: Create a screen manager to hold windows for easy transitioning
+
+            //Lose
             if let scene = ShopScene.unarchiveFromFile("ShopScene") as? ShopScene {
                 // Configure the view.
                 let skView = self.view! as SKView

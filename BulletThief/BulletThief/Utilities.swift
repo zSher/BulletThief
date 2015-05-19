@@ -18,6 +18,8 @@ extension Array {
     }
 }
 
+//Exension to get character from string
+//From StackOverflow http://stackoverflow.com/questions/24092884/get-nth-character-of-a-string-in-swift-programming-language
 extension String {
     
     subscript (i: Int) -> Character {
@@ -33,6 +35,7 @@ extension String {
     }
 }
 
+//Extension to find distance between spritenodes
 extension SKSpriteNode {
     func distanceBetween(other: SKSpriteNode) -> CGFloat {
         var xVal = other.position.x - self.position.x
@@ -61,6 +64,7 @@ func randomRange(min: CGFloat, max: CGFloat) -> CGFloat {
     return CGFloat(arc4random()) / 0xFFFFFFFF * (max - min) + min
 }
 
+//Helper to find index of item in arrays
 func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
     for (index, value) in enumerate(array) {
         if value == valueToFind {
@@ -70,6 +74,7 @@ func findIndex<T: Equatable>(array: [T], valueToFind: T) -> Int? {
     return nil
 }
 
+//Convert degrees to radians
 func degreesToRad(x:CGFloat) -> CGFloat {
     return CGFloat(M_PI) * x / CGFloat(180.0)
 }
@@ -82,6 +87,7 @@ enum Directions: Int {
     case Down
 }
 
+//enum for control types
 enum ControlSchemes: Int {
     case Tap = 0
     case Buttons

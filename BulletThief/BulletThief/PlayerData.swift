@@ -29,6 +29,7 @@ class PlayerData: NSObject, NSCoding {
         bulletSet = DefaultSet(data: self)
     }
     
+    //Init with set properties
     convenience init(gold:UInt, farthestTraveled: UInt, controlScheme: ControlSchemes, speed: UInt, bulletDelay: UInt, bulletNum: UInt, bulletDamage: UInt, bulletSet: BulletSet?, bulletSetFlags:[String:UInt]?) {
         self.init()
         self.gold = gold
@@ -60,6 +61,7 @@ class PlayerData: NSObject, NSCoding {
         self.init(gold: gold, farthestTraveled: travel, controlScheme: ControlSchemes(rawValue: controlScheme)!, speed: speed, bulletDelay: bulletDelay, bulletNum: bullets, bulletDamage: bulletDamage, bulletSet: bulletSet, bulletSetFlags: bulletSetFlags)
     }
     
+    //Serialize Data
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(gold, forKey: "gold")
         aCoder.encodeObject(farthestTraveled, forKey: "travel")
@@ -71,6 +73,7 @@ class PlayerData: NSObject, NSCoding {
         aCoder.encodeObject(purchasedBulletSetFlags, forKey: "bSetFlags")
     }
     
+    //Save all player data
     func savePlayerData(){
         if NSKeyedArchiver.archiveRootObject(self, toFile: path) {
             println("Success writing to file!")
@@ -80,6 +83,7 @@ class PlayerData: NSObject, NSCoding {
         }
     }
     
+    //Load player data
     func loadPlayerData() -> PlayerData? {
         if let data = NSKeyedUnarchiver.unarchiveObjectWithFile(path) as? PlayerData {
             return data
@@ -90,4 +94,4 @@ class PlayerData: NSObject, NSCoding {
     }
 }
 
-var playerData: PlayerData = PlayerData()
+var playerData: PlayerData = PlayerData() //SINGLETON

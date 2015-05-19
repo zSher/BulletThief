@@ -13,13 +13,14 @@ import SpriteKit
 class BulletManager: NSObject {
     var inactivePool: [Bullet] = []
     
-    
+    //Init with max amount of bullets
     init(bulletCount:UInt) {
         for i in 0...bulletCount {
             inactivePool.append(Bullet(name: "pelletBullet"))
         }
     }
     
+    //Return a pack of bullets to be used by classes
     func requestBullets(numberOfBullets: UInt) -> [Bullet] {
         var bulletPack: [Bullet] = []
         if numberOfBullets > 0 {
@@ -30,6 +31,7 @@ class BulletManager: NSObject {
         return bulletPack
     }
     
+    //Put used bullets back into pool
     func returnBullets(bullets: [Bullet]) {
         //TODO: reset bullets to normal
         self.inactivePool += bullets

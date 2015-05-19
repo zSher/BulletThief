@@ -9,6 +9,7 @@
 import UIKit
 import SpriteKit
 
+///Enemy that has chance to give splitshot effect
 class SplitShotEnemy: Enemy {
     
     //MARK: - init -

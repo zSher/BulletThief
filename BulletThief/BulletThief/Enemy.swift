@@ -20,6 +20,7 @@ class Enemy: SKSpriteNode {
         self.init(textureName: "enemy", bulletEffects: bulletEffects, numBullets: 1, bulletCount: 20, speed: 5, name: "enemy")
     }
     
+    //Init using set properties
     init(textureName: String, bulletEffects: [BulletEffectProtocol], numBullets:UInt, bulletCount: UInt, speed:CGFloat, name:String) {
         var texture = SKTexture(imageNamed: textureName)
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
@@ -52,6 +53,7 @@ class Enemy: SKSpriteNode {
     //MARK: - Update -
     func update(deltaTime: CFTimeInterval){
         gun.update(deltaTime)
+        //Shoot whenever you can
         if gun.canShoot && !weakened {
             gun.shoot()
         }

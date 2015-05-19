@@ -24,11 +24,13 @@ class DefaultSet: NSObject, BulletSet, NSCoding {
 
     }
     
+    //Initialize
     init(data:PlayerData) {
         super.init()
         self.recalculateBulletEffects(data)
     }
     
+    //When about to go into game screen, recalculate all the effects if player data changed
     func recalculateBulletEffects(data:PlayerData) {
         var bulletDecrease = CGFloat(data.bulletDelayLevel - 1) * (baseFireRate * 0.1)
         var fireDelay = baseFireRate - bulletDecrease

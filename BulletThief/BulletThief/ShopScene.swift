@@ -88,6 +88,7 @@ class ShopScene: SKScene {
             if touchedNode.name == "buyButton" {
                 var parent = touchedNode.parent!
                 
+                //Figure out what button was pressed and pull the correct shop item out of the list using last character in buttons name
                 var lastCharacterString: String = parent.name![4]
                 if lastCharacterString.toInt()! - 1 + (currentShopIndex * 4) < shopItems.count {
                     var item = shopItems[lastCharacterString.toInt()! - 1 + (currentShopIndex * 4)]
@@ -158,6 +159,7 @@ class ShopScene: SKScene {
         shopDetailLbl.runAction(sequenceAction)
     }
     
+    //Show a thank you message for a purchase
     func displayThankYouMessage(msg: String){
         shopDetailLbl.text = msg
         var growAction = SKAction.scaleTo(1.25, duration: 0.25)

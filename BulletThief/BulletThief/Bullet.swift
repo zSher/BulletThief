@@ -22,6 +22,7 @@ class Bullet: SKSpriteNode {
         setPhysicsBody(0, contactBit: 0, collisionBit: 0)
     }
     
+    //init with properties
     init(texture:SKTexture, dmg:UInt) {
         super.init(texture: texture, color: UIColor.clearColor(), size: texture.size())
         self.damage = dmg
