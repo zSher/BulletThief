@@ -14,6 +14,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     var tapController: TapController?
     var distanceLbl:SKLabelNode!
     var distance:CGFloat = 0
+    var aiManager:AIManager!
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
@@ -47,9 +48,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         distanceLbl = childNodeWithName("distanceLbl") as SKLabelNode
         distanceLbl.text = "\(distance)"
         
-        var enemySpawner = SKAction.repeatActionForever(SKAction.sequence([SKAction.runBlock(){self.spawnEnemy()}, SKAction.waitForDuration(2, withRange: 1)]))
-        self.runAction(enemySpawner)
-        spawnEnemy()
+        aiManager = AIManager(scene: self)
     }
     
     //MARK: - touches -
@@ -116,38 +115,10 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
             var enemy = node as Enemy
             enemy.update(deltaTime)
         }
-//        enumerateChildNodesWithName("goldDashEnemy") {node, stop in
-//            var enemy = node as Enemy
-//            enemy.update(deltaTime)
-//        }s
         
-    
+        aiManager.update(deltaTime)
     }
-    
-    //AI Manager spawns new enemies
-    func spawnEnemy(){
-        var enemy:Enemy!
-        var goldChance = randomRange(0, 1)
-        if goldChance < 0.1 {
-            enemy = GoldDashEnemy()
-        } else {
-//            enemy = Enemy()
-            enemy = WaveEnemy()
-        }
 
-        var xRand = randomRange(0, self.size.width)
-        var yPos = self.size.height + enemy.size.height
-        enemy.position = CGPointMake(xRand, yPos)
-        
-        //create straight line movement
-        var enemyPath = UIBezierPath()
-        enemyPath.moveToPoint(CGPointZero)
-        enemyPath.addLineToPoint(CGPointMake(0, -self.size.height - enemy.size.height - 20))
-        enemy.addPath(enemyPath)
-        enemy.addToScene(self)
-        
-    }
-    
     //ugly but oh well.
     func updateControls(deltaTime:CFTimeInterval){
         if playerData.controlScheme != ControlSchemes.Tap {
@@ -173,8 +144,7 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         if ((firstBody.categoryBitMask & CollisionCategories.Enemy != 0) && (secondBody.categoryBitMask & CollisionCategories.PlayerBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
             // PlayerBullet vs Enemy
             (firstBody.node as Enemy).willDie()
-            secondBody.node?.removeAllActions()
-            secondBody.node?.removeFromParent()
+            player.gun.returnToPool(secondBody.node! as Bullet)
         } else if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) && (secondBody.categoryBitMask & CollisionCategories.EnemyBullet != 0) && (firstBody.node != nil && secondBody.node != nil)) {
             // EnemyBullet vs Player
             //TODO: Create a screen manager to hold windows for easy transitioning
@@ -189,6 +159,11 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
                 skView.presentScene(scene)
             }
             
+        } else if ((firstBody.categoryBitMask & CollisionCategories.Player != 0) && (secondBody.categoryBitMask & CollisionCategories.Gold != 0) && (firstBody.node != nil && secondBody.node != nil)) {
+            //Player vs gold
+            secondBody.node?.removeAllActions()
+            secondBody.node?.removeFromParent()
+            playerData.gold += 1
         }
     }
 }

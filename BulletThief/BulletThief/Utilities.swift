@@ -49,6 +49,7 @@ struct CollisionCategories{
     static let EnemyBullet: UInt32 = 0x1 << 2
     static let PlayerBullet: UInt32 = 0x1 << 3
     static let EdgeBody: UInt32 = 0x1 << 4
+    static let Gold: UInt32 = 0x1 << 5
 
 }
 

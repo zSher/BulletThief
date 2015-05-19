@@ -25,14 +25,20 @@ class WaveEnemy: Enemy {
     
     //Always become disabled when killed
     override func willDie() {
-        //Become "Disabled" and able to be stolen
-        self.speed = 6
-        self.weakened = true
-        self.physicsBody?.categoryBitMask = CollisionCategories.None //become unhittable
-        var colorizeAction = SKAction.colorizeWithColor(UIColor.grayColor(), colorBlendFactor: 1, duration: 5.0)
-        var rotateAction = SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(-M_PI * 2), duration: 10.0))
-        var groupAction = SKAction.group([rotateAction, colorizeAction])
-        self.runAction(groupAction)
+        //Chance to disable
+        var chance = randomRange(0, 1)
+        if chance < 0.1 {
+            self.speed = 6
+            self.weakened = true
+            self.physicsBody?.categoryBitMask = CollisionCategories.None //become unhittable
+            var colorizeAction = SKAction.colorizeWithColor(UIColor.grayColor(), colorBlendFactor: 1, duration: 5.0)
+            var rotateAction = SKAction.repeatActionForever(SKAction.rotateByAngle(CGFloat(-M_PI * 2), duration: 10.0))
+            var groupAction = SKAction.group([rotateAction, colorizeAction])
+            self.runAction(groupAction)
+        } else {
+            super.willDie()
+        }
+
     }
     
     override func steal(player:Player){

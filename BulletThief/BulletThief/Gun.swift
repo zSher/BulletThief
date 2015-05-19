@@ -64,7 +64,7 @@ class Gun: SKNode {
     //Fire bullets
     func shoot(){
         //If not on cool down and we have bullets available
-        if canShoot && bulletPool.count > 0{
+        if canShoot && (bulletPool.count - Int(numberOfBulletsToFire)) > 0{
             var scene = owner!.scene!
             var spawnIndex = 0
             //for each bullet we fire per fire
@@ -79,12 +79,15 @@ class Gun: SKNode {
                 //Create fire action group
                 //follow path, return to the pool when done, remove from screen
                 var followPath = SKAction.followPath(bullet.path!.CGPath, asOffset: true, orientToPath: true, speed: bullet.speed)
-                var returnToPool = SKAction.runBlock({() in
-                    self.bulletPool.append(bullet) //Push bullet to back
-                })
-                var removeAction = SKAction.removeFromParent()
-                var actionGrp = SKAction.sequence([followPath, returnToPool, removeAction])
+                var removeAction = SKAction.runBlock() {
+                    self.returnToPool(bullet)
+                }
+                var actionGrp = SKAction.sequence([followPath, removeAction])
                 
+                if bullet.scene != nil {
+                    bullet.removeFromParent()
+                    println("caught failed to remove bullet")
+                }
                 scene.addChild(bullet)
                 bullet.runAction(actionGrp)
                 
@@ -109,6 +112,11 @@ class Gun: SKNode {
                 canShoot = true
             }
         }
+    }
+    
+    func returnToPool(bullet:Bullet){
+        bullet.removeFromParent()
+        self.bulletPool.append(bullet)
     }
     
     required init?(coder aDecoder: NSCoder) {

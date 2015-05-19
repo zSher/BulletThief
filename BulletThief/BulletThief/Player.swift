@@ -33,7 +33,7 @@ import SpriteKit
         self.physicsBody?.dynamic = true
         self.physicsBody?.usesPreciseCollisionDetection = false
         self.physicsBody?.categoryBitMask = CollisionCategories.Player
-        self.physicsBody?.contactTestBitMask = CollisionCategories.EnemyBullet
+        self.physicsBody?.contactTestBitMask = CollisionCategories.EnemyBullet & CollisionCategories.Gold
         self.physicsBody?.collisionBitMask = CollisionCategories.EdgeBody
         self.physicsBody?.allowsRotation = false
 

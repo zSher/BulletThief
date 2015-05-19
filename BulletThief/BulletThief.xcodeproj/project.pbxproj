@@ -43,6 +43,7 @@
 		D5D34A071AFAFA1C001458FF /* enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D34A061AFAFA1C001458FF /* enemy.png */; };
 		D5D34A091AFAFDDB001458FF /* lineBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D34A081AFAFDDB001458FF /* lineBullet.png */; };
 		D5D34A0B1AFB985F001458FF /* ShopScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D5D34A0A1AFB985F001458FF /* ShopScene.sks */; };
+		D5D8B12B1B0AAB60001A89E1 /* launchImage.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8B12A1B0AAB60001A89E1 /* launchImage.png */; };
 		D5D8F6BA1B08DC2000AC85A9 /* BulletSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */; };
 		D5D8F6BD1B08DCD800AC85A9 /* DefaultSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */; };
 		D5D8F6C31B08EDC600AC85A9 /* CrossPathBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */; };
@@ -50,6 +51,10 @@
 		D5D8F6C71B0946EE00AC85A9 /* HyperRapidFireSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6C61B0946EE00AC85A9 /* HyperRapidFireSet.swift */; };
 		D5D8F6CD1B0A243800AC85A9 /* waveEnemy.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6CC1B0A243800AC85A9 /* waveEnemy.png */; };
 		D5D8F6CF1B0A617300AC85A9 /* hyperBullet.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6CE1B0A617300AC85A9 /* hyperBullet.png */; };
+		D5D8F6D11B0A61B000AC85A9 /* AIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D8F6D01B0A61B000AC85A9 /* AIManager.swift */; };
+		D5D8F6D31B0A656C00AC85A9 /* BuyButtonTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6D21B0A656C00AC85A9 /* BuyButtonTexture.png */; };
+		D5D8F6D51B0A664400AC85A9 /* StartButtonTexture.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6D41B0A664400AC85A9 /* StartButtonTexture.png */; };
+		D5D8F6D71B0A717400AC85A9 /* goldItem.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D8F6D61B0A717400AC85A9 /* goldItem.png */; };
 		D5E7D0331AF7267F00F67B66 /* TextureBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */; };
 		D5E7D0351AF72B0E00F67B66 /* FireDelayBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */; };
 		D5E7D0371AF72D0700F67B66 /* SpeedBulletEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */; };
@@ -107,6 +112,7 @@
 		D5D34A061AFAFA1C001458FF /* enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy.png; sourceTree = "<group>"; };
 		D5D34A081AFAFDDB001458FF /* lineBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = lineBullet.png; sourceTree = "<group>"; };
 		D5D34A0A1AFB985F001458FF /* ShopScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = ShopScene.sks; sourceTree = "<group>"; };
+		D5D8B12A1B0AAB60001A89E1 /* launchImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchImage.png; sourceTree = "<group>"; };
 		D5D8F6B91B08DC2000AC85A9 /* BulletSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulletSet.swift; sourceTree = "<group>"; };
 		D5D8F6BC1B08DCD800AC85A9 /* DefaultSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultSet.swift; sourceTree = "<group>"; };
 		D5D8F6C21B08EDC600AC85A9 /* CrossPathBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossPathBulletEffect.swift; sourceTree = "<group>"; };
@@ -114,6 +120,10 @@
 		D5D8F6C61B0946EE00AC85A9 /* HyperRapidFireSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HyperRapidFireSet.swift; sourceTree = "<group>"; };
 		D5D8F6CC1B0A243800AC85A9 /* waveEnemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = waveEnemy.png; sourceTree = "<group>"; };
 		D5D8F6CE1B0A617300AC85A9 /* hyperBullet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hyperBullet.png; sourceTree = "<group>"; };
+		D5D8F6D01B0A61B000AC85A9 /* AIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIManager.swift; sourceTree = "<group>"; };
+		D5D8F6D21B0A656C00AC85A9 /* BuyButtonTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BuyButtonTexture.png; sourceTree = "<group>"; };
+		D5D8F6D41B0A664400AC85A9 /* StartButtonTexture.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StartButtonTexture.png; sourceTree = "<group>"; };
+		D5D8F6D61B0A717400AC85A9 /* goldItem.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goldItem.png; sourceTree = "<group>"; };
 		D5E7D0321AF7267F00F67B66 /* TextureBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextureBulletEffect.swift; sourceTree = "<group>"; };
 		D5E7D0341AF72B0E00F67B66 /* FireDelayBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FireDelayBulletEffect.swift; sourceTree = "<group>"; };
 		D5E7D0361AF72D0700F67B66 /* SpeedBulletEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpeedBulletEffect.swift; sourceTree = "<group>"; };
@@ -201,6 +211,7 @@
 			children = (
 				D5814CCE1AF6D62100749B49 /* Control Schemes */,
 				D5404A521AEFE68B00F46270 /* PlayerData.swift */,
+				D5D8F6D01B0A61B000AC85A9 /* AIManager.swift */,
 				D5404A551AEFE68B00F46270 /* Utilities.swift */,
 				D5404A2E1AEFE61800F46270 /* GameViewController.swift */,
 				D5D34A031AFAF77E001458FF /* Actors */,
@@ -245,6 +256,9 @@
 		D5404A601AEFE69400F46270 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D5D8F6D61B0A717400AC85A9 /* goldItem.png */,
+				D5D8F6D41B0A664400AC85A9 /* StartButtonTexture.png */,
+				D5D8F6D21B0A656C00AC85A9 /* BuyButtonTexture.png */,
 				D5D8F6CE1B0A617300AC85A9 /* hyperBullet.png */,
 				D5D8F6CC1B0A243800AC85A9 /* waveEnemy.png */,
 				D5578FA31B0449FD00D5E586 /* goldDashEnemy.png */,
@@ -252,6 +266,7 @@
 				D5D34A061AFAFA1C001458FF /* enemy.png */,
 				D5C79BC61AF71E07004D2E0F /* pelletBullet.png */,
 				D532F34B1AF146890091661E /* titleImage.png */,
+				D5D8B12A1B0AAB60001A89E1 /* launchImage.png */,
 				D5404A4F1AEFE68B00F46270 /* leftArrow.png */,
 				D5404A501AEFE68B00F46270 /* player.png */,
 				D5404A531AEFE68B00F46270 /* rightArrow.png */,
@@ -371,14 +386,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5D8B12B1B0AAB60001A89E1 /* launchImage.png in Resources */,
 				D5404A371AEFE61800F46270 /* LaunchScreen.xib in Resources */,
 				D5D8F6CD1B0A243800AC85A9 /* waveEnemy.png in Resources */,
 				D5D8F6CF1B0A617300AC85A9 /* hyperBullet.png in Resources */,
 				D5D34A091AFAFDDB001458FF /* lineBullet.png in Resources */,
 				D5C79BC71AF71E07004D2E0F /* pelletBullet.png in Resources */,
+				D5D8F6D71B0A717400AC85A9 /* goldItem.png in Resources */,
 				D5D34A071AFAFA1C001458FF /* enemy.png in Resources */,
 				D5578FA41B0449FD00D5E586 /* goldDashEnemy.png in Resources */,
 				D5404A5A1AEFE68B00F46270 /* player.png in Resources */,
+				D5D8F6D31B0A656C00AC85A9 /* BuyButtonTexture.png in Resources */,
 				D5F774761AF69F3700EA2480 /* BattleScene.sks in Resources */,
 				D5404A341AEFE61800F46270 /* Images.xcassets in Resources */,
 				D5404A591AEFE68B00F46270 /* leftArrow.png in Resources */,
@@ -386,6 +404,7 @@
 				D5404A321AEFE61800F46270 /* Main.storyboard in Resources */,
 				D532F34C1AF146890091661E /* titleImage.png in Resources */,
 				D5D34A0B1AFB985F001458FF /* ShopScene.sks in Resources */,
+				D5D8F6D51B0A664400AC85A9 /* StartButtonTexture.png in Resources */,
 				D5404A5E1AEFE68B00F46270 /* shootBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -415,6 +434,7 @@
 				D529F9041AF9A3170093D762 /* StandardSpawnBulletEffect.swift in Sources */,
 				D5814CCD1AF6CA7900749B49 /* TapController.swift in Sources */,
 				D5E7D0351AF72B0E00F67B66 /* FireDelayBulletEffect.swift in Sources */,
+				D5D8F6D11B0A61B000AC85A9 /* AIManager.swift in Sources */,
 				D5404A5C1AEFE68B00F46270 /* PlayerData.swift in Sources */,
 				D59D87851B084351006746F8 /* WaveEnemy.swift in Sources */,
 				D5814CD21AF70F6F00749B49 /* SplitBulletEffect.swift in Sources */,

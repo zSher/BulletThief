@@ -22,17 +22,18 @@ class ShopScene: SKScene {
         
         //Create a main set of items that scale off of character's current upgrades
         shopItems = [
-            ShopItem(name: "Thrusters +", detail: "Movement speed +10%", cost: 50, costChange: 50, costLevel: playerData.speedLevel, action: itemEffectLibrary.increaseMovementSpeed),
-            ShopItem(name: "Coolant +", detail: "Fire rate +10%", cost: 100, costChange: 100, costLevel: playerData.bulletDelayLevel, action: itemEffectLibrary.increaseFireRate),
-            ShopItem(name: "Caliber +", detail: "Bullet Damage +1", cost: 200, costChange: 200, costLevel: playerData.bulletDamage, action: itemEffectLibrary.increaseBulletDamage),
-            ShopItem(name: "Barrel +", detail: "Bullets fired 1+", cost: 300, costChange: 300, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber),
+            ShopItem(name: "Thrusters +", detail: "Movement speed +10%", cost: 5, costChange: 10, costLevel: playerData.speedLevel, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "Coolant +", detail: "Fire rate +10%", cost: 10, costChange: 10, costLevel: playerData.bulletDelayLevel, action: itemEffectLibrary.increaseFireRate),
+            ShopItem(name: "Velocity +", detail: "Bullet Speed +1", cost: 20, costChange: 20, costLevel: playerData.bulletDamage, action: itemEffectLibrary.increaseBulletDamage),
+            ShopItem(name: "Barrel +", detail: "Bullets fired 1+", cost: 30, costChange: 30, costLevel: playerData.bulletNumber, action: itemEffectLibrary.increaseBulletNumber),
             ShopItem(name: "Basic Gun", detail: "Good Ol' gun", cost: 0, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDefaultSet, equippable: true),
-            ShopItem(name: "DblX Gun", detail: "Split Cross", cost: 1000, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDoubleCrossSet, equippable: true),
-            ShopItem(name: "Hyper Gun", detail: "You want more bullets?", cost: 10000, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipHyperRapidSet, equippable: true),
-            ShopItem(name: "Propane", detail: "and propane accessories", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
-            ShopItem(name: "Nope", detail: ".avi", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed)
+            ShopItem(name: "DblX Gun", detail: "Split Cross", cost: 100, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipDoubleCrossSet, equippable: true),
+            ShopItem(name: "Hyper Gun", detail: "You want bullets?!?", cost: 100, costChange: 0, costLevel: 0, action: itemEffectLibrary.equipHyperRapidSet, equippable: true),
+            ShopItem(name: "Ship Mini", detail: "Dodge more, hit less", cost: 10000, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed),
+            ShopItem(name: "Yamato Gun", detail: "And everything died", cost: 99999, costChange: 50000, costLevel: 1, action: itemEffectLibrary.increaseMovementSpeed)
         ]
         
+
         shopDetailLbl = childNodeWithName("shopLbl1") as SKLabelNode
         shopDetailLbl.text = "What would you like"
         
@@ -132,6 +133,16 @@ class ShopScene: SKScene {
                     currentShopIndex--
                     updateShopDisplay()
                 }
+            } else if touchedNode.name == "cheatLbl" {
+                playerData.gold = 10000
+                for (key, value) in playerData.purchasedBulletSetFlags {
+                    playerData.purchasedBulletSetFlags[key] = 2
+                }
+                self.updateCosts()
+                self.updateShopDisplay()
+            } else if touchedNode.name == "resetLbl" {
+                playerData = PlayerData()
+                playerData.savePlayerData()
             }
             
         }
@@ -158,7 +169,5 @@ class ShopScene: SKScene {
     
     deinit {
     }
-    
-    
 
 }
