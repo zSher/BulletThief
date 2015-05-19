@@ -49,6 +49,12 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
         distanceLbl.text = "\(distance)"
         
         aiManager = AIManager(scene: self)
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "pause:", name: "pauseNotification", object: nil)
+    }
+    
+    func pause(sender: AnyObject) {
+        self.paused = !paused
     }
     
     //MARK: - touches -
@@ -97,26 +103,29 @@ class GameScene: SKScene, HudControllerProtocol, TapControllerProtocol, SKPhysic
     var timeSinceLastUpdate: CFTimeInterval = 0
     override func update(currentTime: CFTimeInterval) {
         /* Called before each frame is rendered */
-        var deltaTime = currentTime - timeSinceLastUpdate
-        timeSinceLastUpdate = currentTime
-        
-        if deltaTime > 1.0 {
-            deltaTime = 1 / 60.0
+        if !paused {
+            var deltaTime = currentTime - timeSinceLastUpdate
+            timeSinceLastUpdate = currentTime
+            
+            if deltaTime > 1.0 {
+                deltaTime = 1 / 60.0
+            }
+            
+            distance += CGFloat(deltaTime)
+            distanceLbl.text = "\(floor(distance))"
+            
+            updateControls(deltaTime)
+            player.update(deltaTime)
+            
+            //TODO: genericify
+            enumerateChildNodesWithName("enemy") {node, stop in
+                var enemy = node as Enemy
+                enemy.update(deltaTime)
+            }
+            
+            aiManager.update(deltaTime)
         }
-        
-        distance += CGFloat(deltaTime)
-        distanceLbl.text = "\(floor(distance))"
-        
-        updateControls(deltaTime)
-        player.update(deltaTime)
-        
-        //TODO: genericify
-        enumerateChildNodesWithName("enemy") {node, stop in
-            var enemy = node as Enemy
-            enemy.update(deltaTime)
-        }
-        
-        aiManager.update(deltaTime)
+
     }
 
     //ugly but oh well.
