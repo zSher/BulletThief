@@ -76,7 +76,7 @@ class AIManager: NSObject {
             } else if difficulty >= 25 && difficulty < 100 {
                 numberToSpawn = 4
             } else {
-                numberToSpawn = 5
+                numberToSpawn = 5 + Int((difficulty - 100) / 100) //add 1 every 100 difficulty
             }
             strafeSpawn(numberToSpawn)
             self.state = .Idle
@@ -86,9 +86,13 @@ class AIManager: NSObject {
                 println("easy")
                 easySpawn()
                 self.state = .Idle
-            } else if difficulty >= 25 {
+            } else if difficulty >= 25 && difficulty < 100 {
                 println("medium")
                 mediumSpawn()
+                self.state = .Idle
+            } else {
+                println("hard")
+                hardSpawn()
                 self.state = .Idle
             }
         } else if self.state == .Idle {
@@ -125,6 +129,27 @@ class AIManager: NSObject {
         }
         var spawnSequence = SKAction.sequence([spawnBlock, spawnDelay])
         var spawner = SKAction.repeatAction(spawnSequence, count: Int(randomRange(7, 10)))
+        var resetBlock = SKAction.runBlock() { self.resetToReady() }
+        scene.runAction(SKAction.sequence([spawner, resetBlock]))
+    }
+    
+    func hardSpawn(){
+        var spawnDelay = SKAction.waitForDuration(1, withRange: 0.75)
+        var spawnBlock = SKAction.runBlock(){
+            var chance = randomRange(0, 1)
+            
+            if chance < 0.10 {
+                self.spawnEnemyAtRandomLocation(GoldDashEnemy())
+            } else if chance >= 0.10 && chance < 0.4 {
+                self.spawnEnemyAtRandomLocation(WaveEnemy())
+            } else if chance >= 0.4 && chance < 0.8 {
+                self.spawnEnemyAtRandomLocation(SplitShotEnemy())
+            } else {
+                self.spawnEnemyAtRandomLocation(Enemy())
+            }
+        }
+        var spawnSequence = SKAction.sequence([spawnBlock, spawnDelay])
+        var spawner = SKAction.repeatAction(spawnSequence, count: Int(randomRange(2, 4)))
         var resetBlock = SKAction.runBlock() { self.resetToReady() }
         scene.runAction(SKAction.sequence([spawner, resetBlock]))
     }
